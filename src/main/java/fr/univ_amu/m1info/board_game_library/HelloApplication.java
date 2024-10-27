@@ -10,75 +10,87 @@ import java.util.List;
 
 public class HelloApplication {
 
-    private static class HelloController implements BoardGameController {
+    private static class OthelloController implements BoardGameController {
         private BoardGameView view;
+        private Grid grid;
+
+        public OthelloController() {
+            this.grid = new Grid();
+        }
 
         @Override
         public void initializeViewOnStart(BoardGameView view) {
-            changeCellColors(view, Color.GREEN, Color.LIGHTGREEN);
-            changeShapes(view, Shape.TRIANGLE, Color.BLACK, Shape.CIRCLE, Color.RED);
             this.view = view;
+            // Initialise le plateau avec une couleur d'échiquier
+            initializeBoard();
+            // Affiche les pions initiaux
+            displayCurrentBoard();
         }
 
+        private void initializeBoard() {
+            for (int row = 0; row < 8; row++) {
+                for (int col = 0; col < 8; col++) {
+                    boolean isEven = (row + col) % 2 == 0;
+                    view.setCellColor(row, col, isEven ? fr.univ_amu.m1info.board_game_library.graphics.Color.GREEN : fr.univ_amu.m1info.board_game_library.graphics.Color.LIGHTGREEN);
+                }
+            }
+        }
+
+        private void displayCurrentBoard() {
+            for (int row = 0; row < 8; row++) {
+                for (int col = 0; col < 8; col++) {
+                    Pion pion = grid.getPion(row, col);
+                    if (pion != null) {
+                        fr.univ_amu.m1info.board_game_library.graphics.Color pieceColor =
+                                pion.getColor() == Color.BLACK ?
+                                        fr.univ_amu.m1info.board_game_library.graphics.Color.BLACK :
+                                        fr.univ_amu.m1info.board_game_library.graphics.Color.WHITE;
+                        view.addShapeAtCell(row, col, Shape.CIRCLE, pieceColor);
+                    }
+                }
+            }
+        }
 
         @Override
         public void boardActionOnClick(int row, int column) {
-            view.removeShapesAtCell(row, column);
+            if (grid.isValidMove(row, column)) {
+                grid.placePion(row, column, new Pion(Color.BLACK));
+                displayCurrentBoard();
+            }
         }
 
         @Override
         public void buttonActionOnClick(String buttonId) {
             switch (buttonId) {
-                case "ButtonChangeLabel" -> {
-                    view.updateLabeledElement("SampleLabel", "Updated Text");
-                    view.updateLabeledElement("ButtonChangeLabel", "Updated Text");
+                case "NewGame" -> {
+                    grid = new Grid();
+                    // Nettoie le plateau
+                    for (int row = 0; row < 8; row++) {
+                        for (int col = 0; col < 8; col++) {
+                            view.removeShapesAtCell(row, col);
+                        }
+                    }
+                    displayCurrentBoard();
                 }
-                case "ButtonStarSquare" -> {
-                    changeCellColors(view, Color.GREEN, Color.DARKGREEN);
-                    changeShapes(view, Shape.STAR, Color.DARKBLUE, Shape.SQUARE, Color.DARKRED);
+                case "ShowConsole" -> {
+                    grid.displayGrid();
                 }
-                case "ButtonDiamondCircle" -> {
-                    changeCellColors(view, Color.WHITE, Color.DARKBLUE);
-                    changeShapes(view, Shape.DIAMOND, Color.LIGHTBLUE, Shape.CIRCLE, Color.RED);
-                }
-                default -> throw new IllegalStateException("Unexpected event, button id : " + buttonId);
             }
         }
     }
 
     public static void main(String[] args) {
-        BoardGameConfiguration boardGameConfiguration = new BoardGameConfiguration("Hello World",
+        BoardGameConfiguration boardGameConfiguration = new BoardGameConfiguration(
+                "Othello Game",
                 new BoardGameDimensions(8, 8),
-                List.of(new LabeledElementConfiguration("Change button & label", "ButtonChangeLabel", LabeledElementKind.BUTTON),
-                        new LabeledElementConfiguration("Add squares and stars", "ButtonStarSquare", LabeledElementKind.BUTTON),
-                        new LabeledElementConfiguration("Add diamonds and circles", "ButtonDiamondCircle", LabeledElementKind.BUTTON),
-                        new LabeledElementConfiguration("Initial Text", "Initial Text", LabeledElementKind.TEXT)
-                ));
-        BoardGameController controller = new HelloController();
+                List.of(
+                        new LabeledElementConfiguration("New Game", "NewGame", LabeledElementKind.BUTTON),
+                        new LabeledElementConfiguration("Show Console Grid", "ShowConsole", LabeledElementKind.BUTTON)
+                )
+        );
+
+        BoardGameController controller = new OthelloController();
         BoardGameApplicationLauncher launcher = JavaFXBoardGameApplicationLauncher.getInstance();
         launcher.launchApplication(boardGameConfiguration, controller);
-    }
-
-    private static void changeCellColors(BoardGameView view, Color oddColor, Color evenColor) {
-        for (int row = 0; row < 8; row++) {
-            for (int column = 0; column < 8; column++) {
-                boolean isEven = (row + column) % 2 == 0;
-                Color colorSquare = isEven ? evenColor : oddColor;
-                view.setCellColor(row, column, colorSquare);
-                view.addShapeAtCell(row, column, Shape.TRIANGLE, Color.BLACK);
-            }
-        }
-    }
-
-    private static void changeShapes(BoardGameView view, Shape oddShape, Color oddColor, Shape evenShape, Color evenColor) {
-        for (int row = 0; row < 8; row++) {
-            for (int column = 0; column < 8; column++) {
-                boolean isEven = (row + column) % 2 == 0;
-                Color colorShape = isEven ? evenColor : oddColor;
-                Shape shape = isEven ? evenShape : oddShape;
-                view.removeShapesAtCell(row, column);
-                view.addShapeAtCell(row, column, shape, colorShape);
-            }
-        }
     }
 }

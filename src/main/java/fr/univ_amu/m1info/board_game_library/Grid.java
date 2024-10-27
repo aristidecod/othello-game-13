@@ -31,12 +31,6 @@ public class Grid {
         squares[4][3] = new Pion(Color.BLACK);
     }
 
-    /**
-     * Vérifie si un mouvement est valide aux coordonnées données
-     * @param x coordonnée x sur la grille
-     * @param y coordonnée y sur la grille
-     * @return true si le mouvement est valide, false sinon
-     */
     public boolean isValidMove(int x, int y) {
         // Vérifie si les coordonnées sont dans la grille
         if (x < 0 || x >= 8 || y < 0 || y >= 8) {
@@ -47,12 +41,6 @@ public class Grid {
         return squares[x][y] == null;
     }
 
-    /**
-     * Place un pion aux coordonnées spécifiées
-     * @param x coordonnée x sur la grille
-     * @param y coordonnée y sur la grille
-     * @param pion le pion à placer
-     */
     public void placePion(int x, int y, Pion pion) {
         if (isValidMove(x, y)) {
             squares[x][y] = pion;
