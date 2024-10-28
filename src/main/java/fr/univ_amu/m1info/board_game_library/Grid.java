@@ -4,7 +4,6 @@ public class Grid {
     // Tableau 2D de Piece représentant le plateau de jeu 8x8
     private Pion[][] squares;
 
-    // Constructeur
     public Grid() {
         squares = new Pion[8][8];
         initializeGrid();

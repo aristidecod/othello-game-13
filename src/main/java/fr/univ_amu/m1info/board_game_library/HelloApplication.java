@@ -13,9 +13,15 @@ public class HelloApplication {
     private static class OthelloController implements BoardGameController {
         private BoardGameView view;
         private Grid grid;
+        private Player player1;
+        private Player player2;
+        private Player currentPlayer;
 
         public OthelloController() {
             this.grid = new Grid();
+            this.player1 = new Player("Player 1", Color.BLACK);
+            this.player2 = new Player("Player 2", Color.WHITE);
+            this.currentPlayer = player1;
         }
 
         @Override
@@ -25,6 +31,8 @@ public class HelloApplication {
             initializeBoard();
             // Affiche les pions initiaux
             displayCurrentBoard();
+            // Met à jour l'élément de l'interface pour afficher le joueur actuel
+            updateCurrentPlayerIndicator();
         }
 
         private void initializeBoard() {
@@ -51,11 +59,18 @@ public class HelloApplication {
             }
         }
 
+        private void updateCurrentPlayerIndicator() {
+            String playerText = "Current Player: " + currentPlayer.getName();
+            view.updateLabeledElement("currentPlayerLabel", playerText, true);
+        }
+
         @Override
         public void boardActionOnClick(int row, int column) {
-            if (grid.isValidMove(row, column)) {
-                grid.placePion(row, column, new Pion(Color.BLACK));
+            if (currentPlayer.play(row, column, grid)) {
                 displayCurrentBoard();
+                // Changer de joueur
+                currentPlayer = (currentPlayer == player1) ? player2 : player1;
+                updateCurrentPlayerIndicator();
             }
         }
 
@@ -70,7 +85,9 @@ public class HelloApplication {
                             view.removeShapesAtCell(row, col);
                         }
                     }
+                    currentPlayer = player1;
                     displayCurrentBoard();
+                    updateCurrentPlayerIndicator();
                 }
                 case "ShowConsole" -> {
                     grid.displayGrid();
@@ -85,7 +102,8 @@ public class HelloApplication {
                 new BoardGameDimensions(8, 8),
                 List.of(
                         new LabeledElementConfiguration("New Game", "NewGame", LabeledElementKind.BUTTON),
-                        new LabeledElementConfiguration("Show Console Grid", "ShowConsole", LabeledElementKind.BUTTON)
+                        new LabeledElementConfiguration("Show Console Grid", "ShowConsole", LabeledElementKind.BUTTON),
+                        new LabeledElementConfiguration("Current Player", "currentPlayerLabel", LabeledElementKind.TEXT)
                 )
         );
 
