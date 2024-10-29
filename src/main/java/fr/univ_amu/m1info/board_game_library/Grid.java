@@ -41,9 +41,7 @@ public class Grid {
     }
 
     public void placePion(int x, int y, Pion pion) {
-        if (isValidMove(x, y)) {
-            squares[x][y] = pion;
-        }
+        squares[x][y] = pion;
     }
 
     public void flipPion(int x, int y) {
