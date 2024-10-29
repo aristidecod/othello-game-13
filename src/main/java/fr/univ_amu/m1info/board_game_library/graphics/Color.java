@@ -37,6 +37,9 @@ public enum Color {
     LIGHTBLUE,
 
     /** A dark shade of blue. */
-    DARKBLUE
+    DARKBLUE,
+    /** A dark shade of blue. */
+    YELLOW
+
 }
 

@@ -22,6 +22,7 @@ public class HelloApplication {
             this.player1 = new Player("Player 1", Color.BLACK);
             this.player2 = new Player("Player 2", Color.WHITE);
             this.currentPlayer = player1;
+
         }
 
         @Override
@@ -59,12 +60,31 @@ public class HelloApplication {
             }
         }
 
+        private void highlightValidMoves() {
+            List<int[]> validMoves = grid.findValidMoves(currentPlayer.getColor());
+            for (int[] move : validMoves) {
+                int row = move[0];
+                int col = move[1];
+                // Utilise une couleur spécifique pour indiquer un coup possible
+                view.setCellColor(row, col, fr.univ_amu.m1info.board_game_library.graphics.Color.LIGHTBLUE);
+            }
+        }
+
         private void updateCurrentPlayerIndicator() {
             String playerText = "Current Player: " + currentPlayer.getName();
             view.updateLabeledElement("currentPlayerLabel", playerText, true);
         }
 
-        @Override
+        private void clearBoardHighlights() {
+            for (int row = 0; row < 8; row++) {
+                for (int col = 0; col < 8; col++) {
+                    boolean isEven = (row + col) % 2 == 0;
+                    view.setCellColor(row, col, isEven ? fr.univ_amu.m1info.board_game_library.graphics.Color.GREEN : fr.univ_amu.m1info.board_game_library.graphics.Color.LIGHTGREEN);
+                }
+            }
+        }
+
+        /*  @Override
         public void boardActionOnClick(int row, int column) {
             if (currentPlayer.play(row, column, grid)) {
                 displayCurrentBoard();
@@ -72,14 +92,28 @@ public class HelloApplication {
                 currentPlayer = (currentPlayer == player1) ? player2 : player1;
                 updateCurrentPlayerIndicator();
             }
+        }*/
+        @Override
+        public void boardActionOnClick(int row, int column) {
+            if (currentPlayer.play(row, column, grid)) {
+                displayCurrentBoard();
+
+                // Changer de joueur
+                currentPlayer = (currentPlayer == player1) ? player2 : player1;
+                updateCurrentPlayerIndicator();
+
+                // Nettoie et met en évidence les nouveaux coups possibles pour le joueur actuel
+                clearBoardHighlights();
+                highlightValidMoves();
+            }
         }
+
 
         @Override
         public void buttonActionOnClick(String buttonId) {
             switch (buttonId) {
                 case "NewGame" -> {
                     grid = new Grid();
-                    // Nettoie le plateau
                     for (int row = 0; row < 8; row++) {
                         for (int col = 0; col < 8; col++) {
                             view.removeShapesAtCell(row, col);
@@ -88,7 +122,12 @@ public class HelloApplication {
                     currentPlayer = player1;
                     displayCurrentBoard();
                     updateCurrentPlayerIndicator();
+
+                    // Nettoie les indications et met en évidence les coups possibles pour le premier joueur
+                    clearBoardHighlights();
+                    highlightValidMoves();
                 }
+
                 case "ShowConsole" -> {
                     grid.displayGrid();
                 }
@@ -111,4 +150,6 @@ public class HelloApplication {
         BoardGameApplicationLauncher launcher = JavaFXBoardGameApplicationLauncher.getInstance();
         launcher.launchApplication(boardGameConfiguration, controller);
     }
+
+
 }

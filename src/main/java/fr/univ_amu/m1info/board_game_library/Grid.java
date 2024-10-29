@@ -1,5 +1,9 @@
 package fr.univ_amu.m1info.board_game_library;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Grid {
     // Tableau 2D de Piece représentant le plateau de jeu 8x8
     private Pion[][] squares;
@@ -41,7 +45,9 @@ public class Grid {
     }
 
     public void placePion(int x, int y, Pion pion) {
-        squares[x][y] = pion;
+        if (isValidMove(x, y)) {
+            squares[x][y] = pion;
+        }
     }
 
     public void flipPion(int x, int y) {
@@ -75,5 +81,48 @@ public class Grid {
             return squares[x][y];
         }
         return null;
+    }
+
+    public List<int[]> findValidMoves(Color playerColor) {
+        List<int[]> validMoves = new ArrayList<>();
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (isValidMoveForOthello(i, j, playerColor)) {
+                    validMoves.add(new int[]{i, j});
+                }
+            }
+        }
+        return validMoves;
+    }
+
+    private boolean isValidMoveForOthello(int x, int y, Color playerColor) {
+        if (squares[x][y] != null) return false; // Case déjà occupée
+
+        // Directions de recherche : haut, bas, gauche, droite, et diagonales
+        int[][] directions = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
+        };
+
+        for (int[] direction : directions) {
+            int dx = direction[0], dy = direction[1];
+            int row = x + dx, col = y + dy;
+            boolean foundOpponent = false;
+
+            while (row >= 0 && row < 8 && col >= 0 && col < 8) {
+                Pion current = squares[row][col];
+                if (current == null) break;
+
+                if (current.getColor() != playerColor) {
+                    foundOpponent = true;
+                } else {
+                    if (foundOpponent) return true; // Coup valide car un pion adverse est encerclé
+                    break;
+                }
+                row += dx;
+                col += dy;
+            }
+        }
+        return false;
     }
 }
