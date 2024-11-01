@@ -30,7 +30,7 @@ public class Player {
     public boolean play(int x, int y, Grid grid) {
         // Vérifie si le mouvement est valide dans la grille
         if (grid.isValidMove(x, y)) {
-            // Place un pion de la couleur du joueur
+            // Place un pion de la couleur du joueur à une position valide
             grid.placePion(x, y, new Pion(color));
             return true;
         }
