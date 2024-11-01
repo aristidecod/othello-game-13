@@ -1,7 +1,5 @@
-import fr.univ_amu.m1info.board_game_library.Color;
-import fr.univ_amu.m1info.board_game_library.Grid;
-import fr.univ_amu.m1info.board_game_library.Pion;
-import fr.univ_amu.m1info.board_game_library.Player;
+package fr.univ_amu.m1info.board_game_library;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
