@@ -19,10 +19,9 @@ public class HelloApplication {
 
         public OthelloController() {
             this.grid = new Grid();
-            this.player1 = new Player("Player 1", Color.BLACK);
-            this.player2 = new Player("Player 2", Color.WHITE);
+            this.player1 = new Player("Placida 1", Color.BLACK);
+            this.player2 = new Player("Placida 2", Color.WHITE);
             this.currentPlayer = player1;
-
         }
 
         @Override
@@ -34,6 +33,7 @@ public class HelloApplication {
             displayCurrentBoard();
             // Met à jour l'élément de l'interface pour afficher le joueur actuel
             updateCurrentPlayerIndicator();
+            highlightValidMoves();
         }
 
         private void initializeBoard() {
