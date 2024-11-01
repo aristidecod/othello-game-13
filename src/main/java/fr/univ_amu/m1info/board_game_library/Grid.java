@@ -34,22 +34,6 @@ public class Grid {
         squares[4][3] = new Pion(Color.BLACK);
     }
 
-   public boolean isValidGrid(int x, int y) {
-        // Vérifie si les coordonnées sont dans la grille
-        if (x < 0 || x >= 8 || y < 0 || y >= 8) {
-            return false;
-        }
-
-        // Vérifie si la case est déjà occupée
-        return squares[x][y] == null;
-    }
-    /*
-       public void placePion(int x, int y, Pion pion) {
-           if (isValidMove(x, y)) {
-               squares[x][y] = pion;
-           }
-       }
-   */
     public void flipPion(int x, int y) {
         if (squares[x][y] != null) {
             Pion pion = (Pion) squares[x][y];
@@ -88,7 +72,7 @@ public class Grid {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (isValidMoveForOthello(i, j, playerColor)) {
+                if (isValidMove(i, j, playerColor)) {
                     validMoves.add(new int[]{i, j});
                 }
             }
@@ -96,7 +80,7 @@ public class Grid {
         return validMoves;
     }
 
-    private boolean isValidMoveForOthello(int x, int y, Color playerColor) {
+    public boolean isValidMove(int x, int y, Color playerColor) {
         if (squares[x][y] != null) return false; // Case déjà occupée
 
         // Directions de recherche : haut, bas, gauche, droite, et diagonales
@@ -128,7 +112,7 @@ public class Grid {
 
 
     // Place un pion sur la grille
-    public void placePion(int x, int y, Pion pion) {
+    public boolean placePion(int x, int y, Pion pion) {
         List<int[]> validMoves = findValidMoves(pion.getColor());    // liste des mouvements valides pour le joueur actuel.
         boolean isMoveValid = false;
 
@@ -141,9 +125,9 @@ public class Grid {
 
         if (isMoveValid) {
             squares[x][y] = pion;
+            return true;
         } else {
-            System.out.println("Invalid move!");
+            return false;
         }
     }
-
 }

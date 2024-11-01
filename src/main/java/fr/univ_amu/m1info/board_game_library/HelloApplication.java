@@ -84,18 +84,12 @@ public class HelloApplication {
             }
         }
 
-        /*  @Override
-        public void boardActionOnClick(int row, int column) {
-            if (currentPlayer.play(row, column, grid)) {
-                displayCurrentBoard();
-                // Changer de joueur
-                currentPlayer = (currentPlayer == player1) ? player2 : player1;
-                updateCurrentPlayerIndicator();
-            }
-        }*/
         @Override
         public void boardActionOnClick(int row, int column) {
             if (currentPlayer.play(row, column, grid)) {
+                String message = "";
+                view.updateLabeledElement("Info", message, true);
+
                 displayCurrentBoard();
 
                 // Changer de joueur
@@ -105,6 +99,10 @@ public class HelloApplication {
                 // Nettoie et met en évidence les nouveaux coups possibles pour le joueur actuel
                 clearBoardHighlights();
                 highlightValidMoves();
+            }
+            else {
+                String message = "Invalid Move";
+                view.updateLabeledElement("Info", message, true);
             }
         }
 
@@ -142,7 +140,8 @@ public class HelloApplication {
                 List.of(
                         new LabeledElementConfiguration("New Game", "NewGame", LabeledElementKind.BUTTON),
                         new LabeledElementConfiguration("Show Console Grid", "ShowConsole", LabeledElementKind.BUTTON),
-                        new LabeledElementConfiguration("Current Player", "currentPlayerLabel", LabeledElementKind.TEXT)
+                        new LabeledElementConfiguration("Current Player", "currentPlayerLabel", LabeledElementKind.TEXT),
+                        new LabeledElementConfiguration("", "Info", LabeledElementKind.TEXT)
                 )
         );
 
