@@ -15,7 +15,7 @@ public class GridTest {
     }
 
     @Test
-    public void testIsValidMoveForOthello_InitialSetup() {
+    public void testIsValidMove() {
         // Teste les coups valides autour des positions centrales pour les deux couleurs
         assertTrue(grid.isValidMove(2, 3, Color.BLACK), "Le coup (2, 3) devrait être valide pour BLACK");
         assertTrue(grid.isValidMove(3, 2, Color.BLACK), "Le coup (3, 2) devrait être valide pour BLACK");
@@ -28,7 +28,7 @@ public class GridTest {
     }
 
     @Test
-    public void testFindValidMoves_InitialSetup() {
+    public void testFindValidMoves() {
         // Vérifie les coups valides pour la configuration initiale
         List<int[]> validMoves = grid.findValidMoves(Color.BLACK);
 
