@@ -12,7 +12,7 @@ public interface BoardGameView {
      * @param id the identifier of the labeled element to update.
      * @param newText the new text to display.
      */
-    void updateLabeledElement(String id, String newText);
+    void updateLabeledElement(String id, String newText, boolean bold);
 
     /**
      * Sets the color of a specific cell on the game board.

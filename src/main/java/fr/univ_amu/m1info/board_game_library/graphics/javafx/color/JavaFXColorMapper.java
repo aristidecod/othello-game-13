@@ -21,6 +21,7 @@ public class JavaFXColorMapper {
             case LIGHTBLUE -> javafx.scene.paint.Color.LIGHTBLUE;
             case LIGHTGREEN -> javafx.scene.paint.Color.LIGHTGREEN;
             case LIGHT_RED -> LIGHT_RED;
+            case YELLOW -> javafx.scene.paint.Color.YELLOW;
         };
     }
 }
