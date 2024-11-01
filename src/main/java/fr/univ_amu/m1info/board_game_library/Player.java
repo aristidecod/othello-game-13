@@ -42,7 +42,7 @@ public class Player {
      * @param grid La grille du jeu.
      * @return Le score calculé.
      */
-    public int calculateScore(Grid grid) {
+    public void calculateScore(Grid grid) {
         int newScore = 0;
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
@@ -53,6 +53,5 @@ public class Player {
             }
         }
         this.score = newScore;
-        return newScore;
     }
 }
