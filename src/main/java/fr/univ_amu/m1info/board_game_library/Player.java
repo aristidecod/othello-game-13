@@ -31,7 +31,7 @@ public class Player {
         // Vérifie si le mouvement est valide dans la grille
         if (grid.isValidMove(x, y, color)) {
             // Place un pion de la couleur du joueur à une position valide
-            return grid.placePion(x, y, new Pion(color));
+            return grid.placePion(x, y, new Pawn(color));
         }
         return false;
     }
@@ -45,7 +45,7 @@ public class Player {
         int newScore = 0;
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
-                Pion pion = grid.getPion(row, col);
+                Pawn pion = grid.getPion(row, col);
                 if (pion != null && pion.getColor() == this.color) {
                     newScore++;
                 }

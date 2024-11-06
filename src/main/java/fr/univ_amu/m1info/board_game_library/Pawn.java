@@ -1,9 +1,9 @@
 package fr.univ_amu.m1info.board_game_library;
 
-public class Pion {
+public class Pawn {
     private Color color;
 
-    public Pion(Color color) {
+    public Pawn(Color color) {
         this.color = color;
     }
 

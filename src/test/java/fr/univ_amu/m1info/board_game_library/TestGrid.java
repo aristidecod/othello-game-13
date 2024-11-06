@@ -43,7 +43,7 @@ public class TestGrid {
     @Test
     public void placePion_validMove() {
         Grid grid = new Grid();
-        Pion pion = new Pion(Color.BLACK);
+        Pawn pion = new Pawn(Color.BLACK);
 
         //suppoons que le pion noir est placé sur la case 5,4
         boolean isPionPlaced = grid.placePion(2, 3, pion);
@@ -55,7 +55,7 @@ public class TestGrid {
     @Test
     public void placePion_invalidMove() {
         Grid grid = new Grid();
-        Pion pion = new Pion(Color.BLACK);
+        Pawn pion = new Pawn(Color.BLACK);
 
         boolean isPionPlaced = grid.placePion(0, 0, pion);
 

@@ -48,7 +48,7 @@ public class HelloApplication {
         private void displayCurrentBoard() {
             for (int row = 0; row < 8; row++) {
                 for (int col = 0; col < 8; col++) {
-                    Pion pion = grid.getPion(row, col);
+                    Pawn pion = grid.getPion(row, col);
                     if (pion != null) {
                         fr.univ_amu.m1info.board_game_library.graphics.Color pieceColor =
                                 pion.getColor() == Color.BLACK ?
