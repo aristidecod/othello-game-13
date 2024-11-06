@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="merge de la branch test/display_grid dans la branch dev" />
+    <list default="true" id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="merge de la branch  test/see_possible_moves dans la branch dev">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fr/univ_amu/m1info/board_game_library/TestPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/univ_amu/m1info/board_game_library/TestPlayer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,22 +52,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "JUnit.All in board_game_library.test.executor": "Coverage",
+    "JUnit.GridTest.executor": "Run",
+    "JUnit.TestGrid.executor": "Run",
+    "JUnit.TestPlayer.testPlayInvalidMove.executor": "Run",
+    "JUnit.TestPlayer.testPlayValidMove.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "dev",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
-    <configuration name="TestGrid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+}]]></component>
+  <component name="RunManager" selected="JUnit.TestPlayer.testCalculateScore">
+    <configuration name="All in board_game_library.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="board_game_library.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GridTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="board_game_library.test" />
       <extension name="coverage">
         <pattern>
@@ -72,15 +89,67 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="fr.univ_amu.m1info.board_game_library" />
-      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.TestGrid" />
+      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.GridTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPlayer.testCalculateScore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="board_game_library.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.univ_amu.m1info.board_game_library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.univ_amu.m1info.board_game_library" />
+      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.TestPlayer" />
+      <option name="METHOD_NAME" value="testCalculateScore" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPlayer.testPlayInvalidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="board_game_library.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.univ_amu.m1info.board_game_library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.univ_amu.m1info.board_game_library" />
+      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.TestPlayer" />
+      <option name="METHOD_NAME" value="testPlayInvalidMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPlayer.testPlayValidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="board_game_library.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.univ_amu.m1info.board_game_library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.univ_amu.m1info.board_game_library" />
+      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.TestPlayer" />
+      <option name="METHOD_NAME" value="testPlayValidMove" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestGrid" />
+        <item itemvalue="JUnit.TestPlayer.testCalculateScore" />
+        <item itemvalue="JUnit.TestPlayer.testPlayInvalidMove" />
+        <item itemvalue="JUnit.TestPlayer.testPlayValidMove" />
+        <item itemvalue="JUnit.All in board_game_library.test" />
+        <item itemvalue="JUnit.GridTest" />
       </list>
     </recent_temporary>
   </component>
@@ -111,7 +180,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730907360311</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="merge de la branch test/valid_move_placement dans la branch dev">
+      <option name="closed" value="true" />
+      <created>1730908132585</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730908132585</updated>
+    </task>
+    <task id="LOCAL-00003" summary="merge de la branch  test/see_possible_moves dans la branch dev">
+      <option name="closed" value="true" />
+      <created>1730908710973</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730908710973</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +216,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajout de l'indication du joueur actuel et option de texte en gras" />
     <MESSAGE value="merge de la branch test/display_grid dans la branch dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge de la branch test/display_grid dans la branch dev" />
+    <MESSAGE value="merge de la branch test/valid_move_placement dans la branch dev" />
+    <MESSAGE value="merge de la branch  test/see_possible_moves dans la branch dev" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge de la branch  test/see_possible_moves dans la branch dev" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/board_game_library$All_in_board_game_library_test.ic" NAME="All in board_game_library.test Coverage Results" MODIFIED="1730908843202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
