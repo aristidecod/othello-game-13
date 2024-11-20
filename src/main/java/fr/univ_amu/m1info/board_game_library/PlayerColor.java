@@ -1,10 +1,10 @@
 package fr.univ_amu.m1info.board_game_library;
 
-public enum Color {
+public enum PlayerColor {
     BLACK,
     WHITE;
 
-    public Color getOppositeColor() {
+    public PlayerColor getOppositeColor() {
         return this == BLACK ? WHITE : BLACK;
     }
 

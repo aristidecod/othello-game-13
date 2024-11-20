@@ -2,12 +2,12 @@ package fr.univ_amu.m1info.board_game_library;
 
 public class Player {
     private final String name;
-    private final Color color;
+    private final PlayerColor playerColor;
     private int score;
 
-    public Player(String name, Color color) {
+    public Player(String name, PlayerColor playerColor) {
         this.name = name;
-        this.color = color;
+        this.playerColor = playerColor;
         this.score = 0;
     }
 
@@ -15,8 +15,8 @@ public class Player {
         return name;
     }
 
-    public Color getColor() {
-        return color;
+    public PlayerColor getColor() {
+        return playerColor;
     }
 
     public int getScore() {
@@ -29,9 +29,9 @@ public class Player {
 
     public boolean play(int x, int y, Grid grid) {
         // Vérifie si le mouvement est valide dans la grille
-        if (grid.isValidMove(x, y, color)) {
+        if (grid.isValidMove(x, y, playerColor)) {
             // Place un pion de la couleur du joueur à une position valide
-            return grid.placePion(x, y, new Pawn(color));
+            return grid.placePawn(x, y, new Pawn(playerColor));
         }
         return false;
     }
@@ -45,8 +45,8 @@ public class Player {
         int newScore = 0;
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
-                Pawn pion = grid.getPion(row, col);
-                if (pion != null && pion.getColor() == this.color) {
+                Pawn pion = grid.getPawn(row, col);
+                if (pion != null && pion.getColor() == this.playerColor) {
                     newScore++;
                 }
             }

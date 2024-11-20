@@ -27,21 +27,21 @@ public class Grid {
 
         // Place les 4 pions de départ au centre
         // Pions blancs
-        squares[3][3] = new Pawn(Color.WHITE);
-        squares[4][4] = new Pawn(Color.WHITE);
+        squares[3][3] = new Pawn(PlayerColor.WHITE);
+        squares[4][4] = new Pawn(PlayerColor.WHITE);
         // Pions noirs
-        squares[3][4] = new Pawn(Color.BLACK);
-        squares[4][3] = new Pawn(Color.BLACK);
+        squares[3][4] = new Pawn(PlayerColor.BLACK);
+        squares[4][3] = new Pawn(PlayerColor.BLACK);
     }
 
     public void flipPion(int x, int y) {
         if (squares[x][y] != null) {
-            Pawn pion = (Pawn) squares[x][y];
+            Pawn pawn = (Pawn) squares[x][y];
             // Change la couleur du pion
-            if (pion.getColor() == Color.BLACK) {
-                pion.setColor(Color.WHITE);
+            if (pawn.getColor() == PlayerColor.BLACK) {
+                pawn.setColor(PlayerColor.WHITE);
             } else {
-                pion.setColor(Color.BLACK);
+                pawn.setColor(PlayerColor.BLACK);
             }
         }
     }
@@ -52,22 +52,22 @@ public class Grid {
                 if (squares[i][j] == null) {
                     System.out.print("- ");
                 } else {
-                    Pawn pion = (Pawn) squares[i][j];
-                    System.out.print(pion.getColor() == Color.BLACK ? "B " : "W ");
+                    Pawn pawn = (Pawn) squares[i][j];
+                    System.out.print(pawn.getColor() == PlayerColor.BLACK ? "B " : "W ");
                 }
             }
             System.out.println();
         }
     }
 
-    public Pawn getPion(int x, int y) {
+    public Pawn getPawn(int x, int y) {
         if (x >= 0 && x < 8 && y >= 0 && y < 8) {
             return squares[x][y];
         }
         return null;
     }
 
-    public List<int[]> findValidMoves(Color playerColor) {
+    public List<int[]> findValidMoves(PlayerColor playerColor) {
         List<int[]> validMoves = new ArrayList<>();
 
         for (int i = 0; i < 8; i++) {
@@ -80,7 +80,7 @@ public class Grid {
         return validMoves;
     }
 
-    public boolean isValidMove(int x, int y, Color playerColor) {
+    public boolean isValidMove(int x, int y, PlayerColor playerColor) {
         if (squares[x][y] != null) return false; // Case déjà occupée
 
         // Directions de recherche : haut, bas, gauche, droite, et diagonales
@@ -112,8 +112,8 @@ public class Grid {
 
 
     // Place un pion sur la grille
-    public boolean placePion(int x, int y, Pawn pion) {
-        List<int[]> validMoves = findValidMoves(pion.getColor());    // liste des mouvements valides pour le joueur actuel.
+    public boolean placePawn(int x, int y, Pawn pawn) {
+        List<int[]> validMoves = findValidMoves(pawn.getColor());    // liste des mouvements valides pour le joueur actuel.
         boolean isMoveValid = false;
 
         for (int[] move : validMoves) {
@@ -124,7 +124,7 @@ public class Grid {
         }
 
         if (isMoveValid) {
-            squares[x][y] = pion;
+            squares[x][y] = pawn;
             return true;
         } else {
             return false;

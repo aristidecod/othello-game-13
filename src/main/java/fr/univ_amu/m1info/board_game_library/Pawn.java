@@ -1,17 +1,17 @@
 package fr.univ_amu.m1info.board_game_library;
 
 public class Pawn {
-    private Color color;
+    private PlayerColor playerColor;
 
-    public Pawn(Color color) {
-        this.color = color;
+    public Pawn(PlayerColor playerColor) {
+        this.playerColor = playerColor;
     }
 
-    public Color getColor() {
-        return color;
+    public PlayerColor getColor() {
+        return playerColor;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(PlayerColor playerColor) {
+        this.playerColor = playerColor;
     }
 }

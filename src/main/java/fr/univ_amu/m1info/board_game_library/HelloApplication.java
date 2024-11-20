@@ -19,8 +19,8 @@ public class HelloApplication {
 
         public OthelloController() {
             this.grid = new Grid();
-            this.player1 = new Player("PLAYER 1", Color.BLACK);
-            this.player2 = new Player("PLAYER 2", Color.WHITE);
+            this.player1 = new Player("PLAYER 1", PlayerColor.BLACK);
+            this.player2 = new Player("PLAYER 2", PlayerColor.WHITE);
             this.currentPlayer = player1;
         }
 
@@ -48,10 +48,10 @@ public class HelloApplication {
         private void displayCurrentBoard() {
             for (int row = 0; row < 8; row++) {
                 for (int col = 0; col < 8; col++) {
-                    Pawn pion = grid.getPion(row, col);
+                    Pawn pion = grid.getPawn(row, col);
                     if (pion != null) {
                         fr.univ_amu.m1info.board_game_library.graphics.Color pieceColor =
-                                pion.getColor() == Color.BLACK ?
+                                pion.getColor() == PlayerColor.BLACK ?
                                         fr.univ_amu.m1info.board_game_library.graphics.Color.BLACK :
                                         fr.univ_amu.m1info.board_game_library.graphics.Color.WHITE;
                         view.addShapeAtCell(row, col, Shape.CIRCLE, pieceColor);
