@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="merge de la branch  test/see_possible_moves dans la branch dev">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Pion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fr/univ_amu/m1info/board_game_library/TestGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/univ_amu/m1info/board_game_library/TestGrid.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="board_game_library" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/show_starting_player" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;o24014442&quot;,
+      &quot;fullname&quot;: &quot;OUATTARA Sie&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;git@etulab.univ-amu.fr:o24014442/othello-game-13.git&quot;,
+    &quot;second&quot;: &quot;91dace2d-b33a-4a94-b066-741a8bed5d0b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2o2xumGnr8w7nFlPQMRFLMix2sR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "JUnit.All in board_game_library.test (1).executor": "Coverage",
+    "JUnit.All in board_game_library.test.executor": "Coverage",
+    "JUnit.GridTest.executor": "Run",
+    "JUnit.TestGrid.executor": "Run",
+    "JUnit.TestPlayer.testCalculateScore.executor": "Run",
+    "JUnit.TestPlayer.testPlayInvalidMove.executor": "Run",
+    "JUnit.TestPlayer.testPlayValidMove.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "refactor/rename__classe__pion",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.All in board_game_library.test (1)">
+    <configuration name="All in board_game_library.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="board_game_library.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in board_game_library.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="board_game_library.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPlayer.testCalculateScore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="board_game_library.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.univ_amu.m1info.board_game_library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.univ_amu.m1info.board_game_library" />
+      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.TestPlayer" />
+      <option name="METHOD_NAME" value="testCalculateScore" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPlayer.testPlayInvalidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="board_game_library.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.univ_amu.m1info.board_game_library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.univ_amu.m1info.board_game_library" />
+      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.TestPlayer" />
+      <option name="METHOD_NAME" value="testPlayInvalidMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPlayer.testPlayValidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="board_game_library.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.univ_amu.m1info.board_game_library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.univ_amu.m1info.board_game_library" />
+      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.TestPlayer" />
+      <option name="METHOD_NAME" value="testPlayValidMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in board_game_library.test (1)" />
+        <item itemvalue="JUnit.TestPlayer.testCalculateScore" />
+        <item itemvalue="JUnit.TestPlayer.testPlayInvalidMove" />
+        <item itemvalue="JUnit.TestPlayer.testPlayValidMove" />
+        <item itemvalue="JUnit.All in board_game_library.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="" />
+      <created>1730081696221</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730081696221</updated>
+      <workItem from="1730081697341" duration="1135000" />
+      <workItem from="1730907175235" duration="274000" />
+    </task>
+    <task id="LOCAL-00001" summary="merge de la branch test/display_grid dans la branch dev">
+      <option name="closed" value="true" />
+      <created>1730907360311</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730907360311</updated>
+    </task>
+    <task id="LOCAL-00002" summary="merge de la branch test/valid_move_placement dans la branch dev">
+      <option name="closed" value="true" />
+      <created>1730908132585</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730908132585</updated>
+    </task>
+    <task id="LOCAL-00003" summary="merge de la branch  test/see_possible_moves dans la branch dev">
+      <option name="closed" value="true" />
+      <created>1730908710973</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730908710973</updated>
+    </task>
+    <task id="LOCAL-00004" summary="merge de la branch  test/see_possible_moves dans la branch dev">
+      <option name="closed" value="true" />
+      <created>1730909536955</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730909536955</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajout de l'indication du joueur actuel et option de texte en gras" />
+    <MESSAGE value="merge de la branch test/display_grid dans la branch dev" />
+    <MESSAGE value="merge de la branch test/valid_move_placement dans la branch dev" />
+    <MESSAGE value="merge de la branch  test/see_possible_moves dans la branch dev" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge de la branch  test/see_possible_moves dans la branch dev" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/board_game_library$All_in_board_game_library_test.ic" NAME="All in board_game_library.test Coverage Results" MODIFIED="1730908843202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>

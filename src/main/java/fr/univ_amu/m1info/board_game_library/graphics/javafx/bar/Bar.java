@@ -42,9 +42,12 @@ public class Bar extends HBox {
         this.getChildren().add(button);
     }
 
-    public void updateLabel(String id, String newText){
+    public void updateLabel(String id, String newText, boolean bold){
         if(labeledElements.containsKey(id)){
             labeledElements.get(id).setText(newText);
+            if(bold){
+                labeledElements.get(id).setStyle("-fx-font-weight: bold");
+            }
         }
     }
 }
