@@ -81,16 +81,11 @@ public class Grid {
     }
 
     public boolean isValidMove(int x, int y, PlayerColor playerColor) {
-        if (squares[x][y] != null) return false; // Case déjà occupée
+        if (squares[x][y] != null) return false;
 
-        // Directions de recherche : haut, bas, gauche, droite, et diagonales
-        int[][] directions = {
-                {-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
-        };
-
-        for (int[] direction : directions) {
-            int dx = direction[0], dy = direction[1];
-            int row = x + dx, col = y + dy;
+        for (Direction direction : Direction.values()) {
+            int row = x + direction.getDx();
+            int col = y + direction.getDy();
             boolean foundOpponent = false;
 
             while (row >= 0 && row < 8 && col >= 0 && col < 8) {
@@ -100,11 +95,11 @@ public class Grid {
                 if (current.getColor() != playerColor) {
                     foundOpponent = true;
                 } else {
-                    if (foundOpponent) return true; // Coup valide car un pion adverse est encerclé
+                    if (foundOpponent) return true;
                     break;
                 }
-                row += dx;
-                col += dy;
+                row += direction.getDx();
+                col += direction.getDy();
             }
         }
         return false;

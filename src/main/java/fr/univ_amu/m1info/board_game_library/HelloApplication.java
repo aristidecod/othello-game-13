@@ -149,6 +149,4 @@ public class HelloApplication {
         BoardGameApplicationLauncher launcher = JavaFXBoardGameApplicationLauncher.getInstance();
         launcher.launchApplication(boardGameConfiguration, controller);
     }
-
-
 }
