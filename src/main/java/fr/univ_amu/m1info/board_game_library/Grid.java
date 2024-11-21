@@ -59,24 +59,28 @@ public class Grid {
         int row = x + direction.getDx();
         int col = y + direction.getDy();
         boolean foundOpponent = false;
-
+        // Parcourt les cases dans la direction donnée
         while (row >= 0 && row < 8 && col >= 0 && col < 8) {
             Pawn current = squares[row][col];
             if (current == null) {
                 return new ArrayList<>(); // Aucun pion capturé dans cette direction
             }
             if (current.getColor() != playerColor) {
-                foundOpponent = true;
+                foundOpponent = true; // Pion adverse trouvé
                 capturablePawns.add(new int[]{row, col});
             } else {
+                //si on trouve un pion de la couleur du joueur, on retourne la liste des pions capturables
                 return foundOpponent ? capturablePawns : new ArrayList<>();
             }
             row += direction.getDx();
             col += direction.getDy();
         }
-        return new ArrayList<>();
+        return new ArrayList<>(); // Aucun pion capturé dans cette direction
     }
-
+    /**
+     * Affiche la grille de jeu dans la console.
+     * Les pions noirs sont représentés par 'B', les pions blancs par 'W', et les cases vides par '-'.
+     */
     public void displayGrid() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -91,6 +95,12 @@ public class Grid {
         }
     }
 
+    /**
+     * Retourne le pion à une position donnée.
+     * @param x La position en ligne.
+     * @param y La position en colonne.
+     * @return Le pion à la position donnée.
+     */
     public Pawn getPawn(int x, int y) {
         if (x >= 0 && x < 8 && y >= 0 && y < 8) {
             return squares[x][y];
@@ -98,6 +108,11 @@ public class Grid {
         return null;
     }
 
+    /**
+     * Recherche les mouvements valides pour un joueur donné.
+     * @param playerColor La couleur du joueur.
+     * @return Une liste de coordonnées des mouvements valides.
+     */
     public List<int[]> findValidMoves(PlayerColor playerColor) {
         List<int[]> validMoves = new ArrayList<>();
 
@@ -111,9 +126,18 @@ public class Grid {
         return validMoves;
     }
 
+    /**
+     * Vérifie si un mouvement est valide pour un joueur donné.
+     * @param x La position en ligne.
+     * @param y La position en colonne.
+     * @param playerColor La couleur du joueur.
+     * @return true si le mouvement est valide, sinon false.
+     */
+
     public boolean isValidMove(int x, int y, PlayerColor playerColor) {
         if (squares[x][y] != null) return false;
 
+        // Vérifie si le pion peut capturer des pions adverses dans une direction
         for (Direction direction : Direction.values()) {
             int row = x + direction.getDx();
             int col = y + direction.getDy();
@@ -136,6 +160,13 @@ public class Grid {
         return false;
     }
 
+    /**
+     * Place un pion sur la grille et retourne les pions capturés si le mouvement est valide.
+     * @param x La position en ligne.
+     * @param y La position en colonne.
+     * @param pawn Le pion à placer.
+     * @return true si le mouvement est valide et le pion est placé, sinon false.
+     */
     public boolean placePawn(int x, int y, Pawn pawn) {
         if (isValidMove(x, y, pawn.getColor())) {
             squares[x][y] = pawn;
