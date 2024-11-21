@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="changement de nom de l'enum Color en PlayerColor et correction des certaines fonction qui utilisant toujours pion/Pion au lieu de pawn/Pawn">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Direction.java" afterDir="false" />
+    <list default="true" id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="refactoring de la fonction isValidMove en creant un enum">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/BoardIterator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/BoardPosition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/GameLogic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/GridIterator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,13 +45,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="refactor/rename_enum_color" />
+        <entry key="$PROJECT_DIR$" value="refactor/function_isValidMove" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,6 +85,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
+    "Application.OthelloApplication.executor": "Run",
     "JUnit.All in board_game_library.test (1).executor": "Coverage",
     "JUnit.All in board_game_library.test.executor": "Coverage",
     "JUnit.GridTest.executor": "Run",
@@ -91,7 +97,7 @@
     "JUnit.board_game_library in board_game_library.test.executor": "Profiler#1",
     "JUnit.java in board_game_library.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "refactor/function__isValidMove",
+    "git-widget-placeholder": "refactor/classe__HelloApplication",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/arist/IdeaProjects/othello-game-13",
     "node.js.detected.package.eslint": "true",
@@ -102,7 +108,20 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.OthelloApplication">
+    <configuration name="OthelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.OthelloApplication" />
+      <module name="board_game_library.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.univ_amu.m1info.board_game_library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in board_game_library.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="board_game_library.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -127,22 +146,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPlayer.testPlayInvalidMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="board_game_library.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="fr.univ_amu.m1info.board_game_library.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="fr.univ_amu.m1info.board_game_library" />
-      <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.TestPlayer" />
-      <option name="METHOD_NAME" value="testPlayInvalidMove" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="board_game_library in board_game_library.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="board_game_library.test" />
       <option name="TEST_OBJECT" value="directory" />
@@ -161,11 +164,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.OthelloApplication" />
         <item itemvalue="JUnit.board_game_library in board_game_library.test" />
         <item itemvalue="JUnit.java in board_game_library.test" />
         <item itemvalue="JUnit.All in board_game_library.test (1)" />
         <item itemvalue="JUnit.TestPlayer.testCalculateScore" />
-        <item itemvalue="JUnit.TestPlayer.testPlayInvalidMove" />
       </list>
     </recent_temporary>
   </component>
@@ -189,7 +192,7 @@
       <workItem from="1730907175235" duration="274000" />
       <workItem from="1730997797074" duration="169000" />
       <workItem from="1730997970372" duration="2000" />
-      <workItem from="1732137707910" duration="5014000" />
+      <workItem from="1732137707910" duration="10404000" />
     </task>
     <task id="LOCAL-00001" summary="merge de la branch test/display_grid dans la branch dev">
       <option name="closed" value="true" />
@@ -239,7 +242,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732143091604</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="refactoring de la fonction isValidMove en creant un enum">
+      <option name="closed" value="true" />
+      <created>1732144127852</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732144127852</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +275,8 @@
     <MESSAGE value="merge de la branch refactor/rename_classe_pion dans la branch dev" />
     <MESSAGE value="Refactor : Changement du nom de Pion en Pawn" />
     <MESSAGE value="changement de nom de l'enum Color en PlayerColor et correction des certaines fonction qui utilisant toujours pion/Pion au lieu de pawn/Pawn" />
-    <option name="LAST_COMMIT_MESSAGE" value="changement de nom de l'enum Color en PlayerColor et correction des certaines fonction qui utilisant toujours pion/Pion au lieu de pawn/Pawn" />
+    <MESSAGE value="refactoring de la fonction isValidMove en creant un enum" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring de la fonction isValidMove en creant un enum" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/board_game_library$java_in_board_game_library_test.ic" NAME="java in board_game_library.test Coverage Results" MODIFIED="1732139528089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
