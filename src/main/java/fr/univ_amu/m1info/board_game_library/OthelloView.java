@@ -18,7 +18,7 @@ public class OthelloView {
         BoardIterator iterator = new GridIterator(BOARD_SIZE);
         while (iterator.hasNext()) {
             BoardPosition pos = iterator.next();
-            setCheckerboardPattern(pos.getRow(), pos.getCol());
+            setCheckerboardPattern(pos.row(), pos.col());
         }
     }
 
@@ -27,10 +27,10 @@ public class OthelloView {
         BoardIterator iterator = new GridIterator(BOARD_SIZE);
         while (iterator.hasNext()) {
             BoardPosition pos = iterator.next();
-            Pawn pawn = grid.getPawn(pos.getRow(), pos.getCol());
+            Pawn pawn = grid.getPawn(pos.row(), pos.col());
             if (pawn != null) {
                 Color pieceColor = pawn.getColor() == PlayerColor.BLACK ? Color.BLACK : Color.WHITE;
-                view.addShapeAtCell(pos.getRow(), pos.getCol(), Shape.CIRCLE, pieceColor);
+                view.addShapeAtCell(pos.row(), pos.col(), Shape.CIRCLE, pieceColor);
             }
         }
     }
@@ -62,7 +62,7 @@ public class OthelloView {
         BoardIterator iterator = new GridIterator(BOARD_SIZE);
         while (iterator.hasNext()) {
             BoardPosition pos = iterator.next();
-            view.removeShapesAtCell(pos.getRow(), pos.getCol());
+            view.removeShapesAtCell(pos.row(), pos.col());
         }
     }
 }

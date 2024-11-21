@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Grid {
     // Tableau 2D de Piece représentant le plateau de jeu 8x8
-    private Pawn[][] squares;
+    private final Pawn[][] squares;
 
     public Grid() {
         squares = new Pawn[8][8];
@@ -36,7 +36,7 @@ public class Grid {
 
     public void flipPion(int x, int y) {
         if (squares[x][y] != null) {
-            Pawn pawn = (Pawn) squares[x][y];
+            Pawn pawn = squares[x][y];
             // Change la couleur du pion
             if (pawn.getColor() == PlayerColor.BLACK) {
                 pawn.setColor(PlayerColor.WHITE);
@@ -52,7 +52,7 @@ public class Grid {
                 if (squares[i][j] == null) {
                     System.out.print("- ");
                 } else {
-                    Pawn pawn = (Pawn) squares[i][j];
+                    Pawn pawn = squares[i][j];
                     System.out.print(pawn.getColor() == PlayerColor.BLACK ? "B " : "W ");
                 }
             }

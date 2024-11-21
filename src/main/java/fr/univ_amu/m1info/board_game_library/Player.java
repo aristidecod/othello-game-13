@@ -39,7 +39,6 @@ public class Player {
     /**
      * Calcule et met à jour le score du joueur en fonction du nombre de pions qu'il possède sur la grille.
      * @param grid La grille du jeu.
-     * @return Le score calculé.
      */
     public void calculateScore(Grid grid) {
         int newScore = 0;

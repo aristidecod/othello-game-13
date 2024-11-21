@@ -33,10 +33,4 @@ public class GridIterator implements BoardIterator {
 
         return position;
     }
-
-    @Override
-    public void reset() {
-        currentRow = 0;
-        currentCol = 0;
-    }
 }
