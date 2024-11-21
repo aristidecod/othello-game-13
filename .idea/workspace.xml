@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="correction sur la classe OthelloView ( variable inutilie et fonction non utiliser)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/MoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/MoveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/graphics/BoardGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/graphics/BoardGameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/graphics/javafx/view/JavaFXBoardGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/graphics/javafx/view/JavaFXBoardGameView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +47,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -46,7 +55,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="refactor/function_isValidMove" />
+        <entry key="$PROJECT_DIR$" value="feature/capture_pawn" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,6 +76,39 @@
     &quot;second&quot;: &quot;91dace2d-b33a-4a94-b066-741a8bed5d0b&quot;
   }
 }</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/go_back" />
+                    <option name="lastUsedInstant" value="1732209632" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/capture_pawn" />
+                    <option name="lastUsedInstant" value="1732207227" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1732207005" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/capture-pawn" />
+                    <option name="lastUsedInstant" value="1732206955" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -76,32 +118,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.OthelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in board_game_library.test (1).executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.All in board_game_library.test.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.GridTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestGrid.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestPlayer.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestPlayer.testCalculateScore.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestPlayer.testPlayInvalidMove.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestPlayer.testPlayValidMove.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.board_game_library in board_game_library.test.executor&quot;: &quot;Profiler#1&quot;,
-    &quot;JUnit.java in board_game_library.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;refactor/classe__HelloApplication&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/arist/IdeaProjects/othello-game-13&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.OthelloApplication.executor": "Run",
+    "JUnit.All in board_game_library.test (1).executor": "Coverage",
+    "JUnit.All in board_game_library.test.executor": "Coverage",
+    "JUnit.GridTest.executor": "Run",
+    "JUnit.TestGrid.executor": "Run",
+    "JUnit.TestPlayer.executor": "Run",
+    "JUnit.TestPlayer.testCalculateScore.executor": "Run",
+    "JUnit.TestPlayer.testPlayInvalidMove.executor": "Run",
+    "JUnit.TestPlayer.testPlayValidMove.executor": "Run",
+    "JUnit.board_game_library in board_game_library.test.executor": "Profiler#1",
+    "JUnit.java in board_game_library.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "feature/go__back",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/arist/IdeaProjects/othello-game-13",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.OthelloApplication">
     <configuration name="OthelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="fr.univ_amu.m1info.board_game_library.OthelloApplication" />
@@ -169,8 +212,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
       </set>
     </attachedChunks>
   </component>
@@ -188,6 +231,7 @@
       <workItem from="1730997970372" duration="2000" />
       <workItem from="1732137707910" duration="10404000" />
       <workItem from="1732197104096" duration="3353000" />
+      <workItem from="1732204916164" duration="8696000" />
     </task>
     <task id="LOCAL-00001" summary="merge de la branch test/display_grid dans la branch dev">
       <option name="closed" value="true" />

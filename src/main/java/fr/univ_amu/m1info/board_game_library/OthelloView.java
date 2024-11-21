@@ -26,6 +26,10 @@ public class OthelloView {
         }
     }
 
+    public void updateUndoButton(boolean canUndo) {
+        view.setButtonEnabled("Undo", canUndo);
+    }
+
     public void displayPawns(Grid grid) {
         clearBoard();
         BoardIterator iterator = new GridIterator(BOARD_SIZE);

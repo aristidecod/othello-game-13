@@ -3,12 +3,25 @@ package fr.univ_amu.m1info.board_game_library;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Grid {
+public class Grid implements  Cloneable{
     private final Pawn[][] squares;
 
     public Grid() {
         squares = new Pawn[8][8];
         initializeGrid();
+    }
+
+    @Override
+    public Grid clone() {
+        Grid clonedGrid = new Grid();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (squares[i][j] != null) {
+                    clonedGrid.squares[i][j] = new Pawn(squares[i][j].getColor());
+                }
+            }
+        }
+        return clonedGrid;
     }
     /**
      * Initialise la grille de jeu pour une partie d'Othello.

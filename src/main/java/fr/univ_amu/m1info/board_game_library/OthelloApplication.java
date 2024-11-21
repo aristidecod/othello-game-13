@@ -18,6 +18,7 @@ public class OthelloApplication {
                 List.of(
                         new LabeledElementConfiguration("New Game", "NewGame", LabeledElementKind.BUTTON),
                         new LabeledElementConfiguration("Show Console Grid", "ShowConsole", LabeledElementKind.BUTTON),
+                        new LabeledElementConfiguration("Undo", "Undo", LabeledElementKind.BUTTON),
                         new LabeledElementConfiguration("Current Player", "currentPlayerLabel", LabeledElementKind.TEXT),
                         new LabeledElementConfiguration("", "Info", LabeledElementKind.TEXT)
                 )

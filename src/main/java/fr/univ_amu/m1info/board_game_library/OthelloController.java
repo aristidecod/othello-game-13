@@ -22,26 +22,37 @@ public class OthelloController implements BoardGameController {
     public void boardActionOnClick(int row, int column) {
         if (gameLogic.makeMove(row, column)) {
             othelloView.clearMessages();
-            gameLogic.switchPlayer();
+           // gameLogic.switchPlayer();
             updateGameDisplay();
         } else {
             othelloView.showInvalidMoveMessage();
         }
     }
 
+
     private void updateGameDisplay() {
         othelloView.displayPawns(gameLogic.getGrid());
         othelloView.updateCurrentPlayer(gameLogic.getCurrentPlayerName());
         othelloView.highlightCells(gameLogic.getValidMoves());
+        othelloView.updateUndoButton(gameLogic.canUndo());
     }
 
     @Override
     public void buttonActionOnClick(String buttonId) {
-        if ("NewGame".equals(buttonId)) {
-            gameLogic.resetGame();
-            updateGameDisplay();
-        } else if ("ShowConsole".equals(buttonId)) {
-            gameLogic.getGrid().displayGrid();
+        switch (buttonId) {
+            case "NewGame":
+                gameLogic.resetGame();
+                updateGameDisplay();
+                break;
+            case "ShowConsole":
+                gameLogic.getGrid().displayGrid();
+                break;
+            case "Undo":
+                if (gameLogic.canUndo()) {
+                    gameLogic.undo();
+                    updateGameDisplay();
+                }
+                break;
         }
     }
 }

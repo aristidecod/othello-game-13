@@ -68,16 +68,14 @@ public class JavaFXBoardGameView implements BoardGameControllableView {
     public Bar getBar() {
         return bar;
     }
-
-
-
-    public void buttonActionOnclick(String id){
-        controller.buttonActionOnClick(id);
-    }
+    
 
     public void boardActionOnclick(int row, int column){
         controller.boardActionOnClick(row, column);
     }
 
+    @Override
+    public void setButtonEnabled(String buttonId, boolean enabled){
 
+    }
 }
