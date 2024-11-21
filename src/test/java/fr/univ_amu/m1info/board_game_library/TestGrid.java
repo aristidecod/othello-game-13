@@ -17,71 +17,71 @@ public class TestGrid {
         Grid grid = new Grid();
         grid.initializeGrid();
 
-        // Vérifie que les pions sont placés correctement
-        assertNotNull(grid.getPion(3, 3));
-        assertEquals(Color.WHITE, grid.getPion(3, 3).getColor());
+        // Vérifie que les Pawns sont placés correctement
+        assertNotNull(grid.getPawn(3, 3));
+        assertEquals(PlayerColor.WHITE, grid.getPawn(3, 3).getColor());
 
-        assertNotNull(grid.getPion(4, 4));
-        assertEquals(Color.WHITE, grid.getPion(4, 4).getColor());
+        assertNotNull(grid.getPawn(4, 4));
+        assertEquals(PlayerColor.WHITE, grid.getPawn(4, 4).getColor());
 
-        assertNotNull(grid.getPion(3, 4));
-        assertEquals(Color.BLACK, grid.getPion(3, 4).getColor());
+        assertNotNull(grid.getPawn(3, 4));
+        assertEquals(PlayerColor.BLACK, grid.getPawn(3, 4).getColor());
 
-        assertNotNull(grid.getPion(4, 3));
-        assertEquals(Color.BLACK, grid.getPion(4, 3).getColor());
+        assertNotNull(grid.getPawn(4, 3));
+        assertEquals(PlayerColor.BLACK, grid.getPawn(4, 3).getColor());
 
         // Vérifie que les autres cases sont vides
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (!((i == 3 || i == 4) && (j == 3 || j == 4))) {
-                    assertNull(grid.getPion(i, j));
+                    assertNull(grid.getPawn(i, j));
                 }
             }
         }
     }
 
     @Test
-    public void placePion_validMove() {
+    public void placePawn_validMove() {
         Grid grid = new Grid();
-        Pawn pion = new Pawn(Color.BLACK);
+        Pawn pawn = new Pawn(PlayerColor.BLACK);
 
-        //suppoons que le pion noir est placé sur la case 5,4
-        boolean isPionPlaced = grid.placePion(2, 3, pion);
+        //suppoons que le pawn noir est placé sur la case 5,4
+        boolean isPawnPlaced = grid.placePawn(2, 3, pawn);
 
-        assertTrue(isPionPlaced, "The pion should be placed on the grid as the move is valid.");
-        assertEquals(pion, grid.getPion(2, 3), "The placed pion should be retrieved from the grid.");
+        assertTrue(isPawnPlaced, "The pawn should be placed on the grid as the move is valid.");
+        assertEquals(pawn, grid.getPawn(2, 3), "The placed pawn should be retrieved from the grid.");
     }
 
     @Test
-    public void placePion_invalidMove() {
+    public void placePawn_invalidMove() {
         Grid grid = new Grid();
-        Pawn pion = new Pawn(Color.BLACK);
+        Pawn pawn = new Pawn(PlayerColor.BLACK);
 
-        boolean isPionPlaced = grid.placePion(0, 0, pion);
+        boolean isPawnPlaced = grid.placePawn(0, 0, pawn);
 
-        assertFalse(isPionPlaced, "The pion should not be placed on the grid as the move is invalid.");
-        assertEquals(null, grid.getPion(0, 0), "The grid at the specified point should be null as pion was not placed.");
+        assertFalse(isPawnPlaced, "The pawn should not be placed on the grid as the move is invalid.");
+        assertEquals(null, grid.getPawn(0, 0), "The grid at the specified point should be null as pawn was not placed.");
     }
 
     @Test
     public void testIsValidMove() {
         Grid grid = new Grid();
         // Teste les coups valides autour des positions centrales pour les deux couleurs
-        assertTrue(grid.isValidMove(2, 3, Color.BLACK), "Le coup (2, 3) devrait être valide pour BLACK");
-        assertTrue(grid.isValidMove(3, 2, Color.BLACK), "Le coup (3, 2) devrait être valide pour BLACK");
-        assertTrue(grid.isValidMove(4, 5, Color.BLACK), "Le coup (4, 5) devrait être valide pour BLACK");
-        assertTrue(grid.isValidMove(5, 4, Color.BLACK), "Le coup (5, 4) devrait être valide pour BLACK");
+        assertTrue(grid.isValidMove(2, 3, PlayerColor.BLACK), "Le coup (2, 3) devrait être valide pour BLACK");
+        assertTrue(grid.isValidMove(3, 2, PlayerColor.BLACK), "Le coup (3, 2) devrait être valide pour BLACK");
+        assertTrue(grid.isValidMove(4, 5, PlayerColor.BLACK), "Le coup (4, 5) devrait être valide pour BLACK");
+        assertTrue(grid.isValidMove(5, 4, PlayerColor.BLACK), "Le coup (5, 4) devrait être valide pour BLACK");
 
         // Teste quelques coups invalides
-        assertFalse(grid.isValidMove(3, 3, Color.BLACK), "Le coup (3, 3) ne devrait pas être valide car il est occupé");
-        assertFalse(grid.isValidMove(0, 0, Color.BLACK), "Le coup (0, 0) ne devrait pas être valide car il n'y a pas de pions à retourner");
+        assertFalse(grid.isValidMove(3, 3, PlayerColor.BLACK), "Le coup (3, 3) ne devrait pas être valide car il est occupé");
+        assertFalse(grid.isValidMove(0, 0, PlayerColor.BLACK), "Le coup (0, 0) ne devrait pas être valide car il n'y a pas de Pawns à retourner");
     }
 
     @Test
     public void testFindValidMoves() {
         Grid grid = new Grid();
         // Vérifie les coups valides pour la configuration initiale
-        List<int[]> validMoves = grid.findValidMoves(Color.BLACK);
+        List<int[]> validMoves = grid.findValidMoves(PlayerColor.BLACK);
 
         // On s'attend à avoir 4 coups valides au départ pour le joueur noir
         assertEquals(4, validMoves.size(), "Il devrait y avoir 4 coups valides pour BLACK au départ");

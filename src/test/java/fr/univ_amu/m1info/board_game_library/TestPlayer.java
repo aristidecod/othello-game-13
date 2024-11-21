@@ -1,6 +1,5 @@
 package fr.univ_amu.m1info.board_game_library;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,13 +10,13 @@ public class TestPlayer {
         Player player;
         Grid grid;
 
-        player = new Player("Player 1", Color.BLACK);
+        player = new Player("Player 1", PlayerColor.BLACK);
         grid = new Grid();
 
         boolean result = player.play(3, 2, grid);
         // Vérifie que le coup a été joué et que le pion a été placé
         assertTrue(result, "Le coup doit être valide");
-        assertEquals(Color.BLACK, grid.getPion(3, 2).getColor(), "Le pion doit être placé en (3, 2) avec la couleur noire");
+        assertEquals(PlayerColor.BLACK, grid.getPawn(3, 2).getColor(), "Le pion doit être placé en (3, 2) avec la couleur noire");
     }
 
     @Test
@@ -25,7 +24,7 @@ public class TestPlayer {
         Player player;
         Grid grid;
 
-        player = new Player("Player 1", Color.BLACK);
+        player = new Player("Player 1", PlayerColor.BLACK);
         grid = new Grid();
 
         boolean result = player.play(6, 7, grid);
@@ -38,7 +37,7 @@ public class TestPlayer {
         Player player;
         Grid grid;
 
-        player = new Player("Player 1", Color.BLACK);
+        player = new Player("Player 1", PlayerColor.BLACK);
         grid = new Grid();
 
         // Le joueur joue plusieurs coups
