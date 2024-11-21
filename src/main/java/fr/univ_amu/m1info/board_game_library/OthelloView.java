@@ -4,14 +4,18 @@ import fr.univ_amu.m1info.board_game_library.graphics.BoardGameView;
 import fr.univ_amu.m1info.board_game_library.graphics.Color;
 import fr.univ_amu.m1info.board_game_library.graphics.Shape;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OthelloView {
     private static final int BOARD_SIZE = 8;
     private final BoardGameView view;
+    private List<int[]> currentHighlightedCells;
+
 
     public OthelloView(BoardGameView view) {
         this.view = view;
+        this.currentHighlightedCells = new ArrayList<>();
     }
 
     public void initializeBoard() {
@@ -35,8 +39,12 @@ public class OthelloView {
         }
     }
 
-    public void highlightCells(List<int[]> positions) {
-        for (int[] position : positions) {
+    public void highlightCells(List<int[]> newPositions) {
+        for (int[] position : currentHighlightedCells) {
+            setCheckerboardPattern(position[0], position[1]);
+        }
+        currentHighlightedCells = new ArrayList<>(newPositions);
+        for (int[] position : newPositions) {
             view.setCellColor(position[0], position[1], Color.LIGHTBLUE);
         }
     }

@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="refactoring de la fonction isValidMove en creant un enum">
+    <list default="true" id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="correction sur la classe OthelloView ( variable inutilie et fonction non utiliser)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/BoardIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/BoardIterator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/BoardPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/BoardPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/GridIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/GridIterator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +187,7 @@
       <workItem from="1730997797074" duration="169000" />
       <workItem from="1730997970372" duration="2000" />
       <workItem from="1732137707910" duration="10404000" />
-      <workItem from="1732197104096" duration="781000" />
+      <workItem from="1732197104096" duration="3353000" />
     </task>
     <task id="LOCAL-00001" summary="merge de la branch test/display_grid dans la branch dev">
       <option name="closed" value="true" />
@@ -250,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732144127852</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="correction sur la classe OthelloView ( variable inutilie et fonction non utiliser)">
+      <option name="closed" value="true" />
+      <created>1732197967243</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732197967243</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +279,8 @@
     <MESSAGE value="Refactor : Changement du nom de Pion en Pawn" />
     <MESSAGE value="changement de nom de l'enum Color en PlayerColor et correction des certaines fonction qui utilisant toujours pion/Pion au lieu de pawn/Pawn" />
     <MESSAGE value="refactoring de la fonction isValidMove en creant un enum" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring de la fonction isValidMove en creant un enum" />
+    <MESSAGE value="correction sur la classe OthelloView ( variable inutilie et fonction non utiliser)" />
+    <option name="LAST_COMMIT_MESSAGE" value="correction sur la classe OthelloView ( variable inutilie et fonction non utiliser)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/board_game_library$java_in_board_game_library_test.ic" NAME="java in board_game_library.test Coverage Results" MODIFIED="1732139528089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
