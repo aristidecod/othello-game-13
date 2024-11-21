@@ -40,28 +40,25 @@ public class TestGrid {
         }
     }
 
+
+
     @Test
-    public void placePawn_validMove() {
+    public void testPlacePawn() {
         Grid grid = new Grid();
         Pawn pawn = new Pawn(PlayerColor.BLACK);
 
         //suppoons que le pawn noir est placé sur la case 5,4
         boolean isPawnPlaced = grid.placePawn(2, 3, pawn);
+        assertTrue(isPawnPlaced, "Le pion devrait être placé car le mouvement est valide.");
+        assertEquals(pawn, grid.getPawn(2, 3), "Le pion placé devrait être récupéré de la grille.");
 
-        assertTrue(isPawnPlaced, "The pawn should be placed on the grid as the move is valid.");
-        assertEquals(pawn, grid.getPawn(2, 3), "The placed pawn should be retrieved from the grid.");
+        // Teste un mouvement invalide
+        isPawnPlaced = grid.placePawn(0, 0, pawn);
+        assertFalse(isPawnPlaced, "Le pion ne devrait pas être placé car le mouvement est invalide.");
+        assertNull(grid.getPawn(0, 0), "La grille à la position spécifiée devrait être null car le pion n'a pas été placé.");
     }
 
-    @Test
-    public void placePawn_invalidMove() {
-        Grid grid = new Grid();
-        Pawn pawn = new Pawn(PlayerColor.BLACK);
 
-        boolean isPawnPlaced = grid.placePawn(0, 0, pawn);
-
-        assertFalse(isPawnPlaced, "The pawn should not be placed on the grid as the move is invalid.");
-        assertEquals(null, grid.getPawn(0, 0), "The grid at the specified point should be null as pawn was not placed.");
-    }
 
     @Test
     public void testIsValidMove() {
@@ -91,5 +88,42 @@ public class TestGrid {
         assertTrue(validMoves.stream().anyMatch(move -> move[0] == 3 && move[1] == 2), "Le coup (3, 2) devrait être valide");
         assertTrue(validMoves.stream().anyMatch(move -> move[0] == 4 && move[1] == 5), "Le coup (4, 5) devrait être valide");
         assertTrue(validMoves.stream().anyMatch(move -> move[0] == 5 && move[1] == 4), "Le coup (5, 4) devrait être valide");
+    }
+
+    @Test
+    void testGetCapturablePawnsWithValidCapture() {
+        Grid grid = new Grid();
+        grid.initializeGrid();
+
+        // Créer une situation de capture valide
+        grid.placePawn(3, 3, new Pawn(PlayerColor.WHITE));  // Pion à capturer
+        grid.placePawn(3, 4, new Pawn(PlayerColor.BLACK));  // Pion noir existant
+
+        List<int[]> capturablePawns = grid.getCapturablePawns(3, 2, Direction.RIGHT, PlayerColor.BLACK);
+
+        assertEquals(1, capturablePawns.size(), "Devrait identifier un pion capturable");
+        assertArrayEquals(new int[]{3, 3}, capturablePawns.get(0), "Le pion capturable devrait être à la position (3,3)");
+    }
+
+    @Test
+    void testGetCapturablePawns() {
+
+        Grid grid = new Grid();
+        grid.initializeGrid();
+        grid.placePawn(2, 3, new Pawn(PlayerColor.BLACK));
+        List<int[]> capturablePawns = grid.getCapturablePawns(3, 3, Direction.RIGHT, PlayerColor.BLACK);
+        assertEquals(0, capturablePawns.size(), "Aucun pion ne devrait être capturable dans cette direction");
+    }
+
+    @Test
+    public void testFlipPion() {
+        Grid grid = new Grid();
+        grid.initializeGrid();
+
+        // Place un pion noir à une position qui devrait capturer des pions blancs
+        grid.placePawn(2, 3, new Pawn(PlayerColor.BLACK));
+
+        // Vérifie que les pions blancs ont été retournés en pions noirs
+        assertEquals(PlayerColor.BLACK, grid.getPawn(2, 3).getColor(), "Le pion à (2, 3) devrait être noir après le placement");
     }
 }
