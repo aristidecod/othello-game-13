@@ -9,6 +9,7 @@ public class GameLogic {
     private final Player player1;
     private final Player player2;
     private Player currentPlayer;
+    private OthelloView view;
     private final Deque<Command> commandHistory;
     private static final int MAX_UNDO = 61;
 
@@ -20,6 +21,11 @@ public class GameLogic {
         Command command = new MoveCommand(this);
         this.commandHistory = new LinkedList<>();
         commandHistory.push(command);
+    }
+
+    public void setView(OthelloView view) {
+        this.view = view;
+        updateScores();
     }
 
     public void setGrid(Grid grid) {
