@@ -20,7 +20,9 @@ public class OthelloApplication {
                         new LabeledElementConfiguration("Show Console Grid", "ShowConsole", LabeledElementKind.BUTTON),
                         new LabeledElementConfiguration("Undo", "Undo", LabeledElementKind.BUTTON),
                         new LabeledElementConfiguration("Current Player", "currentPlayerLabel", LabeledElementKind.TEXT),
-                        new LabeledElementConfiguration("", "Info", LabeledElementKind.TEXT)
+                        new LabeledElementConfiguration("", "Info", LabeledElementKind.TEXT),
+                        new LabeledElementConfiguration("", "player1Score", LabeledElementKind.TEXT),
+                        new LabeledElementConfiguration("", "player2Score", LabeledElementKind.TEXT)
                 )
         );
 

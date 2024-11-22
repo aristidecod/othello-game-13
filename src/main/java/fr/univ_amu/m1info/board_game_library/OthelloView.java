@@ -12,7 +12,6 @@ public class OthelloView {
     private final BoardGameView view;
     private List<int[]> currentHighlightedCells;
 
-
     public OthelloView(BoardGameView view) {
         this.view = view;
         this.currentHighlightedCells = new ArrayList<>();
@@ -55,6 +54,13 @@ public class OthelloView {
 
     public void updateCurrentPlayer(String playerName) {
         view.updateLabeledElement("currentPlayerLabel", "Current Player: " + playerName, true);
+    }
+
+    public void updateScores(Player player1, Player player2) {
+        view.updateLabeledElement("player1Score",
+                player1.getName() + ": " + player1.getScore(), true);
+        view.updateLabeledElement("player2Score",
+                player2.getName() + ": " + player2.getScore(), true);
     }
 
     public void showInvalidMoveMessage() {

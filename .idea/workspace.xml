@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f67ba429-ad95-4314-9ff2-14b3b4d6ba97" name="Changes" comment="correction sur la classe OthelloView ( variable inutilie et fonction non utiliser)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/MoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/MoveCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/univ_amu/m1info/board_game_library/OthelloView.java" afterDir="false" />
@@ -55,10 +52,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/capture_pawn" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitLabMergeRequestFiltersHistory">{
   &quot;lastFilter&quot;: {

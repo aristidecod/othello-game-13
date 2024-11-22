@@ -68,7 +68,7 @@ public class Grid implements Cloneable {
      * @param playerColor La couleur du joueur actuel.
      * @return Une liste de coordonnées des pions capturables dans cette direction.
      */
-    private List<int[]> getCapturablePawns(int x, int y, Direction direction, PlayerColor playerColor) {
+    public List<int[]> getCapturablePawns(int x, int y, Direction direction, PlayerColor playerColor) {
         List<int[]> capturablePawns = new ArrayList<>();
         int row = x + direction.getDx();
         int col = y + direction.getDy();
