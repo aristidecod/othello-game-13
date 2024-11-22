@@ -74,6 +74,10 @@ public class JavaFXBoardGameView implements BoardGameControllableView {
         controller.boardActionOnClick(row, column);
     }
 
+    public void buttonActionOnclick(String id){
+        controller.buttonActionOnClick(id);
+    }
+
     @Override
     public void setButtonEnabled(String buttonId, boolean enabled){
 

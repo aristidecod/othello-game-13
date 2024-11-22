@@ -20,9 +20,9 @@ public class OthelloController implements BoardGameController {
 
     @Override
     public void boardActionOnClick(int row, int column) {
-        if (gameLogic.makeMove(row, column)) {
+        if (gameLogic.executeMove(row, column)) {
             othelloView.clearMessages();
-           // gameLogic.switchPlayer();
+            gameLogic.switchPlayer();
             updateGameDisplay();
         } else {
             othelloView.showInvalidMoveMessage();
