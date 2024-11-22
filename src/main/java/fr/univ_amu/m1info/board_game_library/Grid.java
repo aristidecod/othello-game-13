@@ -3,7 +3,7 @@ package fr.univ_amu.m1info.board_game_library;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Grid implements  Cloneable{
+public class Grid implements Cloneable {
     private final Pawn[][] squares;
 
     public Grid() {
@@ -23,6 +23,7 @@ public class Grid implements  Cloneable{
         }
         return clonedGrid;
     }
+
     /**
      * Initialise la grille de jeu pour une partie d'Othello.
      * Place les 4 pions de départ au centre du plateau.
@@ -90,6 +91,7 @@ public class Grid implements  Cloneable{
         }
         return new ArrayList<>(); // Aucun pion capturé dans cette direction
     }
+
     /**
      * Affiche la grille de jeu dans la console.
      * Les pions noirs sont représentés par 'B', les pions blancs par 'W', et les cases vides par '-'.
@@ -183,7 +185,7 @@ public class Grid implements  Cloneable{
     public boolean placePawn(int x, int y, Pawn pawn) {
         if (isValidMove(x, y, pawn.getColor())) {
             squares[x][y] = pawn;
-            flipPion(x, y, pawn.getColor()); // Retourne les pions capturés après le placement
+            flipPion(x, y, pawn.getColor());
             return true;
         }
         return false;

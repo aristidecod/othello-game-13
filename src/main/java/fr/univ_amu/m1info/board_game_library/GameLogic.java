@@ -17,7 +17,7 @@ public class GameLogic {
         this.player1 = new Player("PLAYER 1", PlayerColor.BLACK);
         this.player2 = new Player("PLAYER 2", PlayerColor.WHITE);
         this.currentPlayer = player1;
-        Command command = new MoveCommand(this, 0, 0);
+        Command command = new MoveCommand(this);
         this.commandHistory = new LinkedList<>();
         commandHistory.push(command);
     }
@@ -35,14 +35,12 @@ public class GameLogic {
     }
 
     public boolean executeMove(int row, int column) {
-        if (makeMove(row, column)) {
-            MoveCommand command = new MoveCommand(this, row, column);
+        MoveCommand command = new MoveCommand(this);
+        if (command.execute(row, column)) {
             commandHistory.push(command);
-            System.out.println("tzillr : " + commandHistory.size());
             if (commandHistory.size() > MAX_UNDO) {
                 commandHistory.removeLast();
             }
-            System.out.println("bnbbb : " + commandHistory.size());
             return true;
         }
         return false;
@@ -54,9 +52,6 @@ public class GameLogic {
 
     public void undo() {
         Command command = commandHistory.pop();
-        command = commandHistory.pop();
-        commandHistory.push(command);
-        System.out.println("aaaaa : " + commandHistory.size());
         command.undo();
     }
 
