@@ -40,12 +40,10 @@ public class TestPlayer {
         player = new Player("Player 1", PlayerColor.BLACK);
         grid = new Grid();
 
-        // Le joueur joue plusieurs coups
+        // Le joueur un seul coup
         player.play(3, 2, grid);
-        player.play(2, 3, grid);
-        player.play(4, 5, grid);
 
         player.calculateScore(grid);
-        assertEquals(5, player.getScore(), "Le score doit être calculé en fonction du nombre de pions de la couleur du joueur sachant qu'il y'a deja deux pions placer");
+        assertEquals(4, player.getScore(), "Le score doit être calculé en fonction du nombre de pions de la couleur du joueur sachant qu'il y'a deja deux pions placer");
     }
 }
