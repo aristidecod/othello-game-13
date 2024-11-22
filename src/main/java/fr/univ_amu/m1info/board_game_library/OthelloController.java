@@ -14,8 +14,11 @@ public class OthelloController implements BoardGameController {
     @Override
     public void initializeViewOnStart(BoardGameView view) {
         this.othelloView = new OthelloView(view);
+        gameLogic.setView(othelloView); // Ajout de cette ligne
         othelloView.initializeBoard();
         updateGameDisplay();
+        // Mise à jour initiale des scores
+        othelloView.updateScores(gameLogic.getPlayer1(), gameLogic.getPlayer2());
     }
 
     @Override
@@ -24,6 +27,7 @@ public class OthelloController implements BoardGameController {
             othelloView.clearMessages();
             gameLogic.switchPlayer();
             updateGameDisplay();
+            // Les scores sont maintenant mis à jour automatiquement via GameLogic.updateScores()
         } else {
             othelloView.showInvalidMoveMessage();
         }
