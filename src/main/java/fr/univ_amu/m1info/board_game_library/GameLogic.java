@@ -1,5 +1,7 @@
 package fr.univ_amu.m1info.board_game_library;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GameLogic {
@@ -7,20 +9,56 @@ public class GameLogic {
     private final Player player1;
     private final Player player2;
     private Player currentPlayer;
-    private OthelloView view; // Nouvel attribut
+    private OthelloView view;
+    private final Deque<Command> commandHistory;
+    private static final int MAX_UNDO = 61;
 
     public GameLogic() {
         this.grid = new Grid();
         this.player1 = new Player("Placida", PlayerColor.BLACK);
         this.player2 = new Player("Jonas", PlayerColor.WHITE);
         this.currentPlayer = player1;
+        Command command = new MoveCommand(this);
+        this.commandHistory = new LinkedList<>();
+        commandHistory.push(command);
+    }
+
+    public void setView(OthelloView view) {
+        this.view = view;
         updateScores();
     }
 
-    // Nouvelle méthode pour définir la vue
-    public void setView(OthelloView view) {
-        this.view = view;
-        updateScores(); // Met à jour les scores initiaux
+    public void setGrid(Grid grid) {
+        this.grid = grid;
+    }
+
+    public void setCurrentPlayer(Player player) {
+        this.currentPlayer = player;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public boolean executeMove(int row, int column) {
+        MoveCommand command = new MoveCommand(this);
+        if (command.execute(row, column)) {
+            commandHistory.push(command);
+            if (commandHistory.size() > MAX_UNDO) {
+                commandHistory.removeLast();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public boolean canUndo() {
+        return commandHistory.size() > 1;
+    }
+
+    public void undo() {
+        Command command = commandHistory.pop();
+        command.undo();
     }
 
     public Grid getGrid() {
