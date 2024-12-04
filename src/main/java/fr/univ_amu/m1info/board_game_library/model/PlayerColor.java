@@ -1,12 +1,8 @@
-package fr.univ_amu.m1info.board_game_library;
+package fr.univ_amu.m1info.board_game_library.model;
 
 public enum PlayerColor {
     BLACK,
     WHITE;
-
-    public PlayerColor getOppositeColor() {
-        return this == BLACK ? WHITE : BLACK;
-    }
 
     @Override
     public String toString() {

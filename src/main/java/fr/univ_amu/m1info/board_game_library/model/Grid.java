@@ -1,32 +1,40 @@
-package fr.univ_amu.m1info.board_game_library;
+package fr.univ_amu.m1info.board_game_library.model;
+
+import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
+import fr.univ_amu.m1info.board_game_library.iterator.BoardIterator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Grid implements Cloneable {
-    private final Pawn[][] squares;
+    private Pawn[][] squares;
 
     public Grid() {
         squares = new Pawn[8][8];
-        initializeGrid();
+            initializeGrid();
     }
 
     @Override
     public Grid clone() {
-        Grid clonedGrid = new Grid();
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (squares[i][j] != null) {
-                    clonedGrid.squares[i][j] = new Pawn(squares[i][j].getColor());
+        try {
+            Grid clonedGrid = (Grid) super.clone();
+            clonedGrid.squares = new Pawn[8][8];
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (squares[i][j] != null) {
+                        clonedGrid.squares[i][j] = new Pawn(squares[i][j].getColor());
+                    }
                 }
             }
+            return clonedGrid;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Should not happen");
         }
-        return clonedGrid;
     }
 
     /**
      * Initialise la grille de jeu pour une partie d'Othello.
-     * Place les 4 pions de départ au centre du plateau.
+     * Place the four pions de départ au centre du plateau.
      */
     public void initializeGrid() {
         // Réinitialise chaque case de la grille à null
@@ -45,51 +53,46 @@ public class Grid implements Cloneable {
 
     /**
      * Retourne les pions capturés dans toutes les directions à partir d'une position donnée.
-     * @param x La position en ligne.
-     * @param y La position en colonne.
+     * @param position La position sur le plateau
      * @param playerColor La couleur du joueur actuel (pion qui vient d'être placé).
      */
-    public void flipPion(int x, int y, PlayerColor playerColor) {
+    public void flipPion(BoardPosition position, PlayerColor playerColor) {
         for (Direction direction : Direction.values()) {
-            List<int[]> toFlip = getCapturablePawns(x, y, direction, playerColor);
-            for (int[] coords : toFlip) {
-                int row = coords[0];
-                int col = coords[1];
-                squares[row][col].setColor(playerColor); // Retourne les pions capturés
+            List<BoardPosition> toFlip = getCapturablePawns(position, direction, playerColor);
+            for (BoardPosition posToFlip : toFlip) {
+                squares[posToFlip.row()][posToFlip.col()].setColor(playerColor); // Retourne les pions capturés
             }
         }
     }
 
     /**
      * Récupère la liste des pions capturables dans une direction donnée.
-     * @param x La position en ligne de départ.
-     * @param y La position en colonne de départ.
-     * @param direction La direction à explorer.
-     * @param playerColor La couleur du joueur actuel.
-     * @return Une liste de coordonnées des pions capturables dans cette direction.
+     * @param position La position de départ
+     * @param direction La direction à explorer
+     * @param playerColor La couleur du joueur actuel
+     * @return Une liste des positions des pions capturables dans cette direction
      */
-    public List<int[]> getCapturablePawns(int x, int y, Direction direction, PlayerColor playerColor) {
-        List<int[]> capturablePawns = new ArrayList<>();
-        int row = x + direction.getDx();
-        int col = y + direction.getDy();
+    public List<BoardPosition> getCapturablePawns(BoardPosition position, Direction direction, PlayerColor playerColor) {
+        List<BoardPosition> capturablePawns = new ArrayList<>();
+        int row = position.row() + direction.getDx();
+        int col = position.col() + direction.getDy();
         boolean foundOpponent = false;
-        // Parcourt les cases dans la direction donnée
+
         while (row >= 0 && row < 8 && col >= 0 && col < 8) {
             Pawn current = squares[row][col];
             if (current == null) {
-                return new ArrayList<>(); // Aucun pion capturé dans cette direction
+                return new ArrayList<>();
             }
             if (current.getColor() != playerColor) {
-                foundOpponent = true; // Pion adverse trouvé
-                capturablePawns.add(new int[]{row, col});
+                foundOpponent = true;
+                capturablePawns.add(new BoardPosition(row, col));
             } else {
-                //si on trouve un pion de la couleur du joueur, on retourne la liste des pions capturables
                 return foundOpponent ? capturablePawns : new ArrayList<>();
             }
             row += direction.getDx();
             col += direction.getDy();
         }
-        return new ArrayList<>(); // Aucun pion capturé dans cette direction
+        return new ArrayList<>();
     }
 
     /**
@@ -112,13 +115,12 @@ public class Grid implements Cloneable {
 
     /**
      * Retourne le pion à une position donnée.
-     * @param x La position en ligne.
-     * @param y La position en colonne.
-     * @return Le pion à la position donnée.
+     * @param position La position sur le plateau
+     * @return Le pion à la position donnée
      */
-    public Pawn getPawn(int x, int y) {
-        if (x >= 0 && x < 8 && y >= 0 && y < 8) {
-            return squares[x][y];
+    public Pawn getPawn(BoardPosition position) {
+        if (position.row() >= 0 && position.row() < 8 && position.col() >= 0 && position.col() < 8) {
+            return squares[position.row()][position.col()];
         }
         return null;
     }
@@ -128,14 +130,13 @@ public class Grid implements Cloneable {
      * @param playerColor La couleur du joueur.
      * @return Une liste de coordonnées des mouvements valides.
      */
-    public List<int[]> findValidMoves(PlayerColor playerColor) {
-        List<int[]> validMoves = new ArrayList<>();
-
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (isValidMove(i, j, playerColor)) {
-                    validMoves.add(new int[]{i, j});
-                }
+    public List<BoardPosition> findValidMoves(PlayerColor playerColor) {
+        List<BoardPosition> validMoves = new ArrayList<>();
+        BoardIterator iterator = new GridIterator(8);
+        while (iterator.hasNext()) {
+            BoardPosition position = iterator.next();
+            if (isValidMove(position, playerColor)) {
+                validMoves.add(position);
             }
         }
         return validMoves;
@@ -143,19 +144,17 @@ public class Grid implements Cloneable {
 
     /**
      * Vérifie si un mouvement est valide pour un joueur donné.
-     * @param x La position en ligne.
-     * @param y La position en colonne.
-     * @param playerColor La couleur du joueur.
-     * @return true si le mouvement est valide, sinon false.
+     * @param position La position à vérifier
+     * @param playerColor La couleur du joueur
+     * @return true si le mouvement est valide, sinon false
      */
-
-    public boolean isValidMove(int x, int y, PlayerColor playerColor) {
-        if (squares[x][y] != null) return false;
+    public boolean isValidMove(BoardPosition position, PlayerColor playerColor) {
+        if (squares[position.row()][position.col()] != null) return false;
 
         // Vérifie si le pion peut capturer des pions adverses dans une direction
         for (Direction direction : Direction.values()) {
-            int row = x + direction.getDx();
-            int col = y + direction.getDy();
+            int row = position.row() + direction.getDx();
+            int col = position.col() + direction.getDy();
             boolean foundOpponent = false;
 
             while (row >= 0 && row < 8 && col >= 0 && col < 8) {
@@ -177,15 +176,14 @@ public class Grid implements Cloneable {
 
     /**
      * Place un pion sur la grille et retourne les pions capturés si le mouvement est valide.
-     * @param x La position en ligne.
-     * @param y La position en colonne.
-     * @param pawn Le pion à placer.
-     * @return true si le mouvement est valide et le pion est placé, sinon false.
+     * @param position La position où placer le pion sur le plateau
+     * @param pawn Le pion à placer sur la position
+     * @return true si le mouvement est valide et le pion est placé, false si le mouvement est invalide
      */
-    public boolean placePawn(int x, int y, Pawn pawn) {
-        if (isValidMove(x, y, pawn.getColor())) {
-            squares[x][y] = pawn;
-            flipPion(x, y, pawn.getColor());
+    public boolean placePawn(BoardPosition position, Pawn pawn) {
+        if (isValidMove(position, pawn.getColor())) {
+            squares[position.row()][position.col()] = pawn;
+            flipPion(position, pawn.getColor());
             return true;
         }
         return false;

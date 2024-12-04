@@ -1,5 +1,6 @@
 package fr.univ_amu.m1info.board_game_library;
 
+import fr.univ_amu.m1info.board_game_library.controller.OthelloController;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameApplicationLauncher;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameController;
 import fr.univ_amu.m1info.board_game_library.graphics.JavaFXBoardGameApplicationLauncher;

@@ -1,22 +1,25 @@
-package fr.univ_amu.m1info.board_game_library;
+package fr.univ_amu.m1info.board_game_library.model;
+
+import fr.univ_amu.m1info.board_game_library.command.Command;
+import fr.univ_amu.m1info.board_game_library.command.MoveCommand;
+import fr.univ_amu.m1info.board_game_library.view.OthelloView;
 
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GameLogic {
+public class Game {
     private Grid grid;
     private final Player player1;
     private final Player player2;
     private Player currentPlayer;
     private OthelloView view;
     private final Deque<Command> commandHistory;
-    private static final int MAX_UNDO = 61;
 
-    public GameLogic() {
+    public Game() {
         this.grid = new Grid();
-        this.player1 = new Player("Placida", PlayerColor.BLACK);
-        this.player2 = new Player("Jonas", PlayerColor.WHITE);
+        this.player1 = new Player("Moi", PlayerColor.BLACK);
+        this.player2 = new Player("Toi", PlayerColor.WHITE);
         this.currentPlayer = player1;
         Command command = new MoveCommand(this);
         this.commandHistory = new LinkedList<>();
@@ -40,10 +43,11 @@ public class GameLogic {
         return currentPlayer;
     }
 
-    public boolean executeMove(int row, int column) {
+    public boolean executeMove(BoardPosition position) {
         MoveCommand command = new MoveCommand(this);
-        if (command.execute(row, column)) {
+        if (command.execute(position)) {
             commandHistory.push(command);
+            int MAX_UNDO = 61;
             if (commandHistory.size() > MAX_UNDO) {
                 commandHistory.removeLast();
             }
@@ -65,12 +69,12 @@ public class GameLogic {
         return grid;
     }
 
-    public List<int[]> getValidMoves() {
+    public List<BoardPosition> getValidMoves() {
         return grid.findValidMoves(currentPlayer.getColor());
     }
 
-    public boolean makeMove(int row, int column) {
-        boolean moveSuccess = currentPlayer.play(row, column, grid);
+    public boolean makeMove(BoardPosition position) {
+        boolean moveSuccess = currentPlayer.play(position, grid);
         if (moveSuccess) {
             updateScores();
         }
@@ -105,13 +109,5 @@ public class GameLogic {
 
     public Player getPlayer2() {
         return player2;
-    }
-
-    public int getPlayer1Score() {
-        return player1.getScore();
-    }
-
-    public int getPlayer2Score() {
-        return player2.getScore();
     }
 }

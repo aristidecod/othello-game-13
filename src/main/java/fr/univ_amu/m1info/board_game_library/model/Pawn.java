@@ -1,4 +1,4 @@
-package fr.univ_amu.m1info.board_game_library;
+package fr.univ_amu.m1info.board_game_library.model;
 
 public class Pawn {
     private PlayerColor playerColor;
