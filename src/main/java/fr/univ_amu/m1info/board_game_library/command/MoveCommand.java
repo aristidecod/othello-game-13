@@ -9,6 +9,7 @@ public class MoveCommand implements Command {
     private final Game game;
     private final Grid previousGridState;
     private final Player previousPlayer;
+    private BoardPosition lastPosition;
 
     public MoveCommand(Game game) {
         this.game = game;
@@ -18,6 +19,7 @@ public class MoveCommand implements Command {
 
     @Override
     public boolean execute(BoardPosition position) {
+        this.lastPosition = position;
         return game.makeMove(position);
     }
 
@@ -25,5 +27,10 @@ public class MoveCommand implements Command {
     public void undo() {
         game.setGrid(previousGridState.clone());
         game.setCurrentPlayer(previousPlayer);
+    }
+
+    @Override
+    public BoardPosition getLastPosition() {
+        return lastPosition;
     }
 }
