@@ -8,7 +8,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Game {
+public class Game implements Cloneable {
     private Grid grid;
     private final Player player1;
     private final Player player2;
@@ -111,10 +111,17 @@ public class Game {
         return player2;
     }
 
+    @Override
+    public Game clone() {
+        try {
+            return (Game) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public boolean isOver() {
         return grid.findValidMoves(PlayerColor.BLACK).isEmpty() &&
                 grid.findValidMoves(PlayerColor.WHITE).isEmpty();
     }
-
-
 }
