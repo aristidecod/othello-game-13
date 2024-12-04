@@ -1,4 +1,4 @@
-package fr.univ_amu.m1info.board_game_library;
+package fr.univ_amu.m1info.board_game_library.model;
 
 public enum Direction {
     UP(-1, 0),

@@ -1,8 +1,14 @@
-package fr.univ_amu.m1info.board_game_library;
+package fr.univ_amu.m1info.board_game_library.view;
 
+import fr.univ_amu.m1info.board_game_library.model.Grid;
+import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
+import fr.univ_amu.m1info.board_game_library.model.Pawn;
+import fr.univ_amu.m1info.board_game_library.model.Player;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameView;
 import fr.univ_amu.m1info.board_game_library.graphics.Color;
 import fr.univ_amu.m1info.board_game_library.graphics.Shape;
+import fr.univ_amu.m1info.board_game_library.iterator.BoardIterator;
+import fr.univ_amu.m1info.board_game_library.model.BoardPosition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +16,7 @@ import java.util.List;
 public class OthelloView {
     private static final int BOARD_SIZE = 8;
     private final BoardGameView view;
-    private List<int[]> currentHighlightedCells;
+    private List<BoardPosition> currentHighlightedCells;
 
     public OthelloView(BoardGameView view) {
         this.view = view;
@@ -33,22 +39,25 @@ public class OthelloView {
         clearBoard();
         BoardIterator iterator = new GridIterator(BOARD_SIZE);
         while (iterator.hasNext()) {
-            BoardPosition pos = iterator.next();
-            Pawn pawn = grid.getPawn(pos.row(), pos.col());
+            BoardPosition position = iterator.next();
+            Pawn pawn = grid.getPawn(position);
             if (pawn != null) {
-                Color pieceColor = pawn.getColor() == PlayerColor.BLACK ? Color.BLACK : Color.WHITE;
-                view.addShapeAtCell(pos.row(), pos.col(), Shape.CIRCLE, pieceColor);
+                Color pieceColor = switch (pawn.getColor()) {
+                    case BLACK -> Color.BLACK;
+                    case WHITE -> Color.WHITE;
+                };
+                view.addShapeAtCell(position.row(), position.col(), Shape.CIRCLE, pieceColor);
             }
         }
     }
 
-    public void highlightCells(List<int[]> newPositions) {
-        for (int[] position : currentHighlightedCells) {
-            setCheckerboardPattern(position[0], position[1]);
+    public void highlightCells(List<BoardPosition> newPositions) {
+        for (BoardPosition position : currentHighlightedCells) {
+            setCheckerboardPattern(position.row(), position.col());
         }
         currentHighlightedCells = new ArrayList<>(newPositions);
-        for (int[] position : newPositions) {
-            view.setCellColor(position[0], position[1], Color.LIGHTBLUE);
+        for (BoardPosition position : newPositions) {
+            view.setCellColor(position.row(), position.col(), Color.LIGHTBLUE);
         }
     }
 

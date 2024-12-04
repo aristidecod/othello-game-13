@@ -1,4 +1,7 @@
-package fr.univ_amu.m1info.board_game_library;
+package fr.univ_amu.m1info.board_game_library.model;
+
+import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
+import fr.univ_amu.m1info.board_game_library.iterator.BoardIterator;
 
 public class Player {
     private final String name;
@@ -23,15 +26,11 @@ public class Player {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public boolean play(int x, int y, Grid grid) {
+    public boolean play(BoardPosition position, Grid grid) {
         // Vérifie si le mouvement est valide dans la grille
-        if (grid.isValidMove(x, y, playerColor)) {
+        if (grid.isValidMove(position, playerColor)) {
             // Place un pion de la couleur du joueur à une position valide
-            return grid.placePawn(x, y, new Pawn(playerColor));
+            return grid.placePawn(position, new Pawn(playerColor));
         }
         return false;
     }
@@ -42,12 +41,12 @@ public class Player {
      */
     public void calculateScore(Grid grid) {
         int newScore = 0;
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                Pawn pion = grid.getPawn(row, col);
-                if (pion != null && pion.getColor() == this.playerColor) {
-                    newScore++;
-                }
+        BoardIterator iterator = new GridIterator(8);
+        while (iterator.hasNext()) {
+            BoardPosition position = iterator.next();
+            Pawn pawn = grid.getPawn(position);
+            if (pawn != null && pawn.getColor() == this.playerColor) {
+                newScore++;
             }
         }
         this.score = newScore;

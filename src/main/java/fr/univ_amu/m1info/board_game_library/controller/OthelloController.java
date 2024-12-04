@@ -1,59 +1,60 @@
-package fr.univ_amu.m1info.board_game_library;
+package fr.univ_amu.m1info.board_game_library.controller;
 
+import fr.univ_amu.m1info.board_game_library.model.Game;
+import fr.univ_amu.m1info.board_game_library.view.OthelloView;
 import fr.univ_amu.m1info.board_game_library.graphics.*;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameView;
+import fr.univ_amu.m1info.board_game_library.model.BoardPosition;
 
 public class OthelloController implements BoardGameController {
     private OthelloView othelloView;
-    private final GameLogic gameLogic;
+    private final Game game;
 
     public OthelloController() {
-        this.gameLogic = new GameLogic();
+        this.game = new Game();
     }
 
     @Override
     public void initializeViewOnStart(BoardGameView view) {
         this.othelloView = new OthelloView(view);
-        gameLogic.setView(othelloView); // Ajout de cette ligne
+        game.setView(othelloView);
         othelloView.initializeBoard();
         updateGameDisplay();
         // Mise à jour initiale des scores
-        othelloView.updateScores(gameLogic.getPlayer1(), gameLogic.getPlayer2());
+        othelloView.updateScores(game.getPlayer1(), game.getPlayer2());
     }
 
-    @Override
     public void boardActionOnClick(int row, int column) {
-        if (gameLogic.executeMove(row, column)) {
+        BoardPosition position = new BoardPosition(row, column);
+        if (game.executeMove(position)) {
             othelloView.clearMessages();
-            gameLogic.switchPlayer();
+            game.switchPlayer();
             updateGameDisplay();
-            // Les scores sont maintenant mis à jour automatiquement via GameLogic.updateScores()
         } else {
             othelloView.showInvalidMoveMessage();
         }
     }
 
-
     private void updateGameDisplay() {
-        othelloView.displayPawns(gameLogic.getGrid());
-        othelloView.updateCurrentPlayer(gameLogic.getCurrentPlayerName());
-        othelloView.highlightCells(gameLogic.getValidMoves());
-        othelloView.updateUndoButton(gameLogic.canUndo());
+        othelloView.displayPawns(game.getGrid());
+        othelloView.updateCurrentPlayer(game.getCurrentPlayerName());
+        othelloView.highlightCells(game.getValidMoves());
+        othelloView.updateUndoButton(game.canUndo());
     }
 
     @Override
     public void buttonActionOnClick(String buttonId) {
         switch (buttonId) {
             case "NewGame":
-                gameLogic.resetGame();
+                game.resetGame();
                 updateGameDisplay();
                 break;
             case "ShowConsole":
-                gameLogic.getGrid().displayGrid();
+                game.getGrid().displayGrid();
                 break;
             case "Undo":
-                if (gameLogic.canUndo()) {
-                    gameLogic.undo();
+                if (game.canUndo()) {
+                    game.undo();
                     updateGameDisplay();
                 }
                 break;
