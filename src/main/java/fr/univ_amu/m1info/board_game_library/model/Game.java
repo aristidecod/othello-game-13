@@ -110,4 +110,11 @@ public class Game {
     public Player getPlayer2() {
         return player2;
     }
+
+    public boolean isOver() {
+        return grid.findValidMoves(PlayerColor.BLACK).isEmpty() &&
+                grid.findValidMoves(PlayerColor.WHITE).isEmpty();
+    }
+
+
 }

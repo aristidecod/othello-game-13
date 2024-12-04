@@ -6,6 +6,7 @@ public class GridIterator implements BoardIterator {
     private final int size;
     private int currentRow;
     private int currentCol;
+    private static final int BOARD_SIZE = 8;
 
     public GridIterator(int size) {
         this.size = size;
@@ -42,4 +43,5 @@ public class GridIterator implements BoardIterator {
         }
         return position;
     }
+
 }
