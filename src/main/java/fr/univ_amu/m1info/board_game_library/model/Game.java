@@ -14,16 +14,19 @@ public class Game {
     private final Player player2;
     private Player currentPlayer;
     private OthelloView view;
-    private final Deque<Command> commandHistory;
+    private final Deque<Command> undoHistory;
+    private final Deque<Command> redoHistory;
+    private boolean isRedoing = false;
 
     public Game() {
         this.grid = new Grid();
-        this.player1 = new Player("Moi", PlayerColor.BLACK);
-        this.player2 = new Player("Toi", PlayerColor.WHITE);
+        this.player1 = new Player("BLACK", PlayerColor.BLACK);
+        this.player2 = new Player("WHITE", PlayerColor.WHITE);
         this.currentPlayer = player1;
         Command command = new MoveCommand(this);
-        this.commandHistory = new LinkedList<>();
-        commandHistory.push(command);
+        this.undoHistory = new LinkedList<>();
+        this.redoHistory = new LinkedList<>();
+        undoHistory.push(command);
     }
 
     public void setView(OthelloView view) {
@@ -46,10 +49,14 @@ public class Game {
     public boolean executeMove(BoardPosition position) {
         MoveCommand command = new MoveCommand(this);
         if (command.execute(position)) {
-            commandHistory.push(command);
+            undoHistory.push(command);
+            // On efface l'historique de redo seulement si ce n'est pas un redo
+            if (!isRedoing) {
+                redoHistory.clear();
+            }
             int MAX_UNDO = 61;
-            if (commandHistory.size() > MAX_UNDO) {
-                commandHistory.removeLast();
+            if (undoHistory.size() > MAX_UNDO) {
+                undoHistory.removeLast();
             }
             return true;
         }
@@ -57,12 +64,26 @@ public class Game {
     }
 
     public boolean canUndo() {
-        return commandHistory.size() > 1;
+        return undoHistory.size() > 1;
+    }
+
+    public boolean canRedo() {
+        return !redoHistory.isEmpty();
     }
 
     public void undo() {
-        Command command = commandHistory.pop();
+        Command command = undoHistory.pop();
         command.undo();
+        redoHistory.push(command);
+    }
+
+    public void redo() {
+        isRedoing = true;
+        Command command = redoHistory.pop();
+        if (command.execute(command.getLastPosition())) {
+            undoHistory.push(command);
+        }
+        isRedoing = false;
     }
 
     public Grid getGrid() {
@@ -95,7 +116,7 @@ public class Game {
         updateScores();
     }
 
-    private void updateScores() {
+    public void updateScores() {
         player1.calculateScore(grid);
         player2.calculateScore(grid);
         if (view != null) {
