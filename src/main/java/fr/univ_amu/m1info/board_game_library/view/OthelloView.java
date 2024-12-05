@@ -96,4 +96,8 @@ public class OthelloView {
             view.removeShapesAtCell(pos.row(), pos.col());
         }
     }
+
+    public void showMessage(String message) {
+        view.updateLabeledElement("Info", message, false);
+    }
 }

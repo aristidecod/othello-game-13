@@ -8,7 +8,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Game {
+public class Game implements Cloneable {
     private Grid grid;
     private final Player player1;
     private final Player player2;
@@ -27,6 +27,17 @@ public class Game {
         this.undoHistory = new LinkedList<>();
         this.redoHistory = new LinkedList<>();
         undoHistory.push(command);
+    }
+
+    @Override
+    public Game clone() {
+        try {
+            Game clonedGame = (Game) super.clone();
+            clonedGame.grid = this.grid.clone();
+            return clonedGame;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Should not happen");
+        }
     }
 
     public void setView(OthelloView view) {
@@ -130,5 +141,9 @@ public class Game {
 
     public Player getPlayer2() {
         return player2;
+    }
+
+    public boolean isOver() {
+        return getValidMoves().isEmpty();
     }
 }

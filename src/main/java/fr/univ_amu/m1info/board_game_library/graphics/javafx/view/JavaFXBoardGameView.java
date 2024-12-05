@@ -39,7 +39,8 @@ public class JavaFXBoardGameView implements BoardGameControllableView {
 
     @Override
     public synchronized void updateLabeledElement(String id, String newText, boolean bold) {
-        bar.updateLabel(id, newText, bold);
+        //bar.updateLabel(id, newText, bold);
+        Platform.runLater(() -> bar.updateLabel(id, newText, bold));
     }
 
     @Override
