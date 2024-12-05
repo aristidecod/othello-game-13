@@ -96,4 +96,18 @@ public class OthelloView {
     public void showMessage(String message) {
         view.updateLabeledElement("Info", message, false);
     }
+
+    public void styleGameOverDialog(javafx.scene.control.Alert alert) {
+        javafx.scene.control.DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("""
+        -fx-background-color: #34495e;
+        -fx-text-fill: white;
+        """);
+
+        dialogPane.lookupButton(javafx.scene.control.ButtonType.OK).setStyle("""
+        -fx-background-color: #3498db;
+        -fx-text-fill: white;
+        -fx-font-weight: bold;
+        """);
+    }
 }
