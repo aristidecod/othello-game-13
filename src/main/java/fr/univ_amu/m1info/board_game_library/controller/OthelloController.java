@@ -8,6 +8,10 @@ import fr.univ_amu.m1info.board_game_library.graphics.*;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameView;
 import fr.univ_amu.m1info.board_game_library.model.BoardPosition;
 import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import fr.univ_amu.m1info.board_game_library.model.Player;
 
 public class OthelloController implements BoardGameController {
     private OthelloView othelloView;
@@ -59,24 +63,65 @@ public class OthelloController implements BoardGameController {
     }
 
     private void showGameOverDialog(String winner) {
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-        alert.setTitle("Fin de la partie");
-        alert.setHeaderText("Game Over !");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("🎮 Fin de la partie");
+        alert.setHeaderText(null);
 
-        String message = winner.equals("Égalité") ?
-                "Match nul !" :
-                "Le gagnant est : " + winner;
+        Player player1 = game.getPlayer1();
+        Player player2 = game.getPlayer2();
 
-        alert.setContentText(message);
+        player1.calculateScore(game.getGrid());
+        player2.calculateScore(game.getGrid());
 
-        javafx.scene.control.ButtonType newGameButton = new javafx.scene.control.ButtonType("Nouvelle Partie");
+        int scoreNoir = player1.getScore();
+        int scoreBlanc = player2.getScore();
+
+        String contentText;
+        if (winner.equals(player1.getName())) {
+            contentText = String.format("""
+            🏆 Partie terminée !
+            
+            Score final :
+            ⚫ Noir : %d
+            ⚪ Blanc : %d
+            
+            🎊 Félicitations %s ! Vous avez gagné ! 🎊
+            """, scoreNoir, scoreBlanc, winner);
+        } else if (winner.equals(player2.getName())) {
+            contentText = String.format("""
+            🏆 Partie terminée !
+            
+            Score final :
+            ⚫ Noir : %d
+            ⚪ Blanc : %d
+            
+            🎊 Félicitations %s ! Vous avez gagné ! 🎊
+            """, scoreNoir, scoreBlanc, winner);
+        } else {
+            contentText = String.format("""
+            🤝 Match nul !
+            
+            Score final :
+            ⚫ Noir : %d
+            ⚪ Blanc : %d
+            
+            Belle partie !
+            """, scoreNoir, scoreBlanc);
+        }
+
+        alert.setContentText(contentText);
+
+        ButtonType newGameButton = new ButtonType("Nouvelle Partie");
         alert.getButtonTypes().setAll(newGameButton);
 
-        alert.showAndWait().ifPresent(response -> {
-            if (response == newGameButton) {
-                buttonActionOnClick("NewGame");
-            }
-        });
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("""
+        -fx-background-color: #f0f0f0;
+        -fx-font-family: 'Segoe UI', sans-serif;
+        -fx-font-size: 14px;
+        """);
+
+        alert.showAndWait().ifPresent(__ -> game.resetGame());
     }
 
     public void boardActionOnClick(int row, int column) {
