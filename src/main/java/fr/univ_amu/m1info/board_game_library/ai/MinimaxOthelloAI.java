@@ -7,99 +7,119 @@ import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
 
 /**
  * Implémentation de l'intelligence artificielle pour le jeu Othello
- * utilisant l'algorithme Minimax
+ * utilisant l'algorithme Minimax avec élagage alpha-beta
  */
 public class MinimaxOthelloAI implements OthelloAI {
-    // Profondeur maximale de l'arbre de recherche
-    private final int MAX_DEPTH = 4;
+    private final int MAX_DEPTH = 5;  // Augmenté à 5 pour une meilleure analyse
     private static final int BOARD_SIZE = 8;
+    private static final int TIMEOUT_MS = 2000;
+    private long startTime;
 
     /**
      * Trouve le meilleur coup à jouer pour l'IA
      *
      * @param game    Etat actuel du jeu
-     * @param aiColor la couleur des pions de  l'IA
+     * @param aiColor la couleur des pions de l'IA
      * @return le meilleur coup à jouer
      */
     @Override
     public BoardPosition findBestMove(Game game, PlayerColor aiColor) {
+        startTime = System.currentTimeMillis();
         BoardPosition bestMove = null;
         int bestScore = Integer.MIN_VALUE;
+        int alpha = Integer.MIN_VALUE;
+        int beta = Integer.MAX_VALUE;
 
         // Parcours tous les coups valides possibles
         for (BoardPosition move : game.getValidMoves()) {
-            //crée une copie du jeu pour simuler le coup
             Game gameCopy = game.clone();
             gameCopy.makeMove(move);
-            //calcule le score du coup en utilisant l'algorithme minimax
-            int score = minimax(gameCopy, MAX_DEPTH, false, aiColor);
-            // Met à jour le meilleur coup si le score est meilleur
+            int score = minimax(gameCopy, MAX_DEPTH, alpha, beta, false, aiColor);
+
             if (score > bestScore) {
                 bestScore = score;
                 bestMove = move;
+            }
+            alpha = Math.max(alpha, bestScore);
+
+            if (isTimeOut()) {
+                break;
             }
         }
 
         return bestMove;
     }
 
+    private boolean isTimeOut() {
+        return System.currentTimeMillis() - startTime > TIMEOUT_MS;
+    }
+
     /**
-     * Implémentation de l'algorithme Minimax
-     *
-     * @param game         Etat actuel du jeu
-     * @param depth        Profondeur de l'arbre de recherche
-     * @param isMaximizing Indique si l'IA doit maximiser ou minimiser le score
-     * @param aiColor      Couleur des pions de l'IA
-     * @return le score du coup
+     * Implémentation de l'algorithme Minimax avec élagage alpha-beta
      */
-    private int minimax(Game game, int depth, boolean isMaximizing, PlayerColor aiColor) {
-        // Si on atteint la profondeur maximale ou si la partie est terminée
-        if (depth == 0 || game.isOver()) {
+    private int minimax(Game game, int depth, int alpha, int beta, boolean isMaximizing, PlayerColor aiColor) {
+        if (depth == 0 || game.isOver() || isTimeOut()) {
+            return evaluate(game, aiColor);
+        }
+
+        var validMoves = game.getValidMoves();
+        if (validMoves.isEmpty()) {
             return evaluate(game, aiColor);
         }
 
         if (isMaximizing) {
-            //Trouve le meilleur coup pour l'IA : maximise le score
             int bestScore = Integer.MIN_VALUE;
-            for (BoardPosition move : game.getValidMoves()) {
+            for (BoardPosition move : validMoves) {
                 Game gameCopy = game.clone();
                 gameCopy.makeMove(move);
-                int score = minimax(gameCopy, depth - 1, false, aiColor);
+                int score = minimax(gameCopy, depth - 1, alpha, beta, false, aiColor);
                 bestScore = Math.max(score, bestScore);
+                alpha = Math.max(alpha, score);
+                if (beta <= alpha || isTimeOut()) break;
             }
             return bestScore;
         } else {
-            //Trouve le meilleur coup pour l'adversaire : minimise le score
             int bestScore = Integer.MAX_VALUE;
-            for (BoardPosition move : game.getValidMoves()) {
+            for (BoardPosition move : validMoves) {
                 Game gameCopy = game.clone();
                 gameCopy.makeMove(move);
-                int score = minimax(gameCopy, depth - 1, true, aiColor);
+                int score = minimax(gameCopy, depth - 1, alpha, beta, true, aiColor);
                 bestScore = Math.min(score, bestScore);
+                beta = Math.min(beta, score);
+                if (beta <= alpha || isTimeOut()) break;
             }
             return bestScore;
         }
     }
 
     /**
-     * Fonction d'évaluation de l'état du jeu
-     *
-     * @param game    Etat actuel du jeu
-     * @param aiColor Couleur des pions de l'IA
-     * @return le score de l'état du jeu
+     * Fonction d'évaluation améliorée de l'état du jeu
      */
     private int evaluate(Game game, PlayerColor aiColor) {
         int score = 0;
         GridIterator iterator = new GridIterator(BOARD_SIZE);
 
+        // Matrice de poids pour l'évaluation des positions
+        int[][] weights = {
+                {100, -20, 10, 5, 5, 10, -20, 100},
+                {-20, -50, -2, -2, -2, -2, -50, -20},
+                {10, -2, 1, 1, 1, 1, -2, 10},
+                {5, -2, 1, 1, 1, 1, -2, 5},
+                {5, -2, 1, 1, 1, 1, -2, 5},
+                {10, -2, 1, 1, 1, 1, -2, 10},
+                {-20, -50, -2, -2, -2, -2, -50, -20},
+                {100, -20, 10, 5, 5, 10, -20, 100}
+        };
+
         while (iterator.hasNext()) {
             BoardPosition pos = iterator.next();
             var pawn = game.getGrid().getPawn(pos);
             if (pawn != null) {
+                int weight = weights[pos.row()][pos.col()];
                 if (pawn.getColor() == aiColor) {
-                    score++;
+                    score += weight;
                 } else {
-                    score--;
+                    score -= weight;
                 }
             }
         }

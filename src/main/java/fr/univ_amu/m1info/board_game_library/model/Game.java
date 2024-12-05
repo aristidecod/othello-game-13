@@ -26,6 +26,17 @@ public class Game implements Cloneable {
         commandHistory.push(command);
     }
 
+    @Override
+    public Game clone() {
+        try {
+            Game clonedGame = (Game) super.clone();
+            clonedGame.grid = this.grid.clone();
+            return clonedGame;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Should not happen");
+        }
+    }
+
     public void setView(OthelloView view) {
         this.view = view;
         updateScores();
@@ -111,17 +122,7 @@ public class Game implements Cloneable {
         return player2;
     }
 
-    @Override
-    public Game clone() {
-        try {
-            return (Game) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public boolean isOver() {
-        return grid.findValidMoves(PlayerColor.BLACK).isEmpty() &&
-                grid.findValidMoves(PlayerColor.WHITE).isEmpty();
+        return getValidMoves().isEmpty();
     }
 }
