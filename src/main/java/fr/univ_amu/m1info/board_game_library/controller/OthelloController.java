@@ -37,6 +37,7 @@ public class OthelloController implements BoardGameController {
         if (game.executeMove(position)) {
             othelloView.clearMessages();
             game.switchPlayer();
+            game.updateScores();
             updateGameDisplay();
 
             if (aiEnabled && game.getCurrentPlayer() == game.getPlayer2()) {
@@ -68,6 +69,8 @@ public class OthelloController implements BoardGameController {
         othelloView.updateCurrentPlayer(game.getCurrentPlayerName());
         othelloView.highlightCells(game.getValidMoves());
         othelloView.updateUndoButton(game.canUndo());
+        othelloView.updateRedoButton(game.canRedo());
+        othelloView.updateScores(game.getPlayer1(), game.getPlayer2());
     }
 
     @Override
@@ -75,6 +78,7 @@ public class OthelloController implements BoardGameController {
         switch (buttonId) {
             case "NewGame":
                 game.resetGame();
+                game.updateScores();
                 updateGameDisplay();
                 break;
             case "ShowConsole":
@@ -83,6 +87,15 @@ public class OthelloController implements BoardGameController {
             case "Undo":
                 if (game.canUndo()) {
                     game.undo();
+                    game.updateScores();
+                    updateGameDisplay();
+                }
+                break;
+            case "Redo":
+                if (game.canRedo()) {
+                    game.redo();
+                    game.switchPlayer();
+                    game.updateScores();
                     updateGameDisplay();
                 }
                 break;

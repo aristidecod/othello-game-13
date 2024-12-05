@@ -29,14 +29,14 @@ public class JavaFXBoardGameViewBuilder implements BoardGameViewBuilder {
     }
 
     @Override
-    public BoardGameViewBuilder addLabel(String id, String initialText) {
-        boardGameView.getBar().addLabel(id, initialText);
+    public BoardGameViewBuilder addLabel(String id, String initialText, int row, int column, int rowSpan, int columnSpan) {
+        boardGameView.getBar().addLabel(id, initialText, row, column, rowSpan, columnSpan);
         return this;
     }
 
     @Override
-    public BoardGameViewBuilder addButton(String id, String label) {
-        boardGameView.getBar().addButton(id, label);
+    public BoardGameViewBuilder addButton(String id, String label, int row, int column, int rowSpan, int columnSpan) {
+        boardGameView.getBar().addButton(id, label, row, column, rowSpan, columnSpan);
         boardGameView.getBar().setButtonAction(id, ()->boardGameView.buttonActionOnclick(id));
         return this;
     }
