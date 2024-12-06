@@ -11,10 +11,11 @@ import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
  */
 public class MinimaxOthelloAI implements OthelloAI {
     // Augmenté à 5 pour une meilleure analyse
-    private final int MAX_DEPTH = 5;
+    final int MAX_DEPTH = 5;
     private static final int BOARD_SIZE = 8;
     private static final int TIMEOUT_MS = 2000;
     private long startTime;
+    int bestScore;
 
     /**
      * Trouve le meilleur coup à jouer pour l'IA
@@ -41,7 +42,7 @@ public class MinimaxOthelloAI implements OthelloAI {
                 bestScore = score;
                 bestMove = move;
             }
-            alpha = Math.max(alpha, bestScore);
+            alpha = bestScore;
 
             if (isTimeOut()) {
                 break;
@@ -68,8 +69,9 @@ public class MinimaxOthelloAI implements OthelloAI {
             return evaluate(game, aiColor);
         }
 
+
         if (isMaximizing) {
-            int bestScore = Integer.MIN_VALUE;
+            bestScore = Integer.MIN_VALUE;
             for (BoardPosition move : validMoves) {
                 Game gameCopy = game.clone();
                 gameCopy.makeMove(move);
@@ -78,9 +80,8 @@ public class MinimaxOthelloAI implements OthelloAI {
                 alpha = Math.max(alpha, score);
                 if (beta <= alpha || isTimeOut()) break;
             }
-            return bestScore;
         } else {
-            int bestScore = Integer.MAX_VALUE;
+            bestScore = Integer.MAX_VALUE;
             for (BoardPosition move : validMoves) {
                 Game gameCopy = game.clone();
                 gameCopy.makeMove(move);
@@ -89,8 +90,8 @@ public class MinimaxOthelloAI implements OthelloAI {
                 beta = Math.min(beta, score);
                 if (beta <= alpha || isTimeOut()) break;
             }
-            return bestScore;
         }
+        return bestScore;
     }
 
     /**
