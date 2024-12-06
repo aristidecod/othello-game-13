@@ -10,7 +10,8 @@ import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
  * utilisant l'algorithme Minimax avec élagage alpha-beta
  */
 public class MinimaxOthelloAI implements OthelloAI {
-    private final int MAX_DEPTH = 5;  // Augmenté à 5 pour une meilleure analyse
+    // Augmenté à 5 pour une meilleure analyse
+    private final int MAX_DEPTH = 5;
     private static final int BOARD_SIZE = 8;
     private static final int TIMEOUT_MS = 2000;
     private long startTime;
@@ -18,7 +19,7 @@ public class MinimaxOthelloAI implements OthelloAI {
     /**
      * Trouve le meilleur coup à jouer pour l'IA
      *
-     * @param game    Etat actuel du jeu
+     * @param game Etat actuel du jeu
      * @param aiColor la couleur des pions de l'IA
      * @return le meilleur coup à jouer
      */

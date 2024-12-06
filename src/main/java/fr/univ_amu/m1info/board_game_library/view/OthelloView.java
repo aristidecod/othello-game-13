@@ -97,7 +97,7 @@ public class OthelloView {
         }
     }
 
-    public void showMessage(String message) {
-        view.updateLabeledElement("Info", message, false);
+    public void showAIStatusMessage(boolean aiEnabled) {
+        view.updateLabeledElement("Info", aiEnabled ? "IA activée" : "IA désactivée", false);
     }
 }

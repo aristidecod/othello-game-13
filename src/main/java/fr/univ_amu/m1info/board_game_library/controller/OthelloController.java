@@ -59,7 +59,7 @@ public class OthelloController implements BoardGameController {
                     javafx.application.Platform.runLater(this::updateGameDisplay);
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.err.println("Error during AI move: " + e.getMessage());
             }
         }).start();
     }
@@ -101,7 +101,7 @@ public class OthelloController implements BoardGameController {
                 break;
             case "AIToggle":
                 setAiEnabled(!aiEnabled);
-                othelloView.showMessage(aiEnabled ? "IA activée" : "IA désactivée");
+                othelloView.showAIStatusMessage(aiEnabled);
                 break;
         }
     }

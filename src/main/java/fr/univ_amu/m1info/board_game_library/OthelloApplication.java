@@ -42,6 +42,14 @@ public class OthelloApplication {
                                 new Position(0, 3, 1, 1)
                         ),
 
+                        // Bouton IA
+                        new LabeledElementConfiguration(
+                                "IA",
+                                "AIToggle",
+                                LabeledElementKind.BUTTON,
+                                new Position(0, 4, 1, 1)
+                        ),
+
                         // Informations joueur et jeu
                         new LabeledElementConfiguration(
                                 "Current Player",
