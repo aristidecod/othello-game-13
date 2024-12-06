@@ -97,7 +97,7 @@ public class OthelloView {
         view.updateLabeledElement("Info", message, false);
     }
 
-    public void styleGameOverDialog(javafx.scene.control.Alert alert) {
+    /*public void styleGameOverDialog(javafx.scene.control.Alert alert) {
         javafx.scene.control.DialogPane dialogPane = alert.getDialogPane();
         dialogPane.setStyle("""
         -fx-background-color: #34495e;
@@ -109,5 +109,5 @@ public class OthelloView {
         -fx-text-fill: white;
         -fx-font-weight: bold;
         """);
-    }
+    }*/
 }
