@@ -36,10 +36,27 @@ public class OthelloController implements BoardGameController {
         BoardPosition position = new BoardPosition(row, column);
         if (game.executeMove(position)) {
             othelloView.clearMessages();
+
+            if (game.isGameOver()) {
+                handleGameOver();
+                return; // Ajout important
+            }
+
             game.switchPlayer();
             game.updateScores();
             updateGameDisplay();
 
+            // Si pas de coups possibles pour le joueur suivant
+            if (game.getValidMoves().isEmpty()) {
+                if (game.isGameOver()) {  // On vérifie si c'est vraiment la fin
+                    handleGameOver();
+                } else {
+                    game.switchPlayer(); // On repasse au joueur précédent
+                    updateGameDisplay();
+                }
+            }
+
+            // Gestion de l'IA après toutes les vérifications
             if (aiEnabled && game.getCurrentPlayer() == game.getPlayer2()) {
                 makeAIMove();
             }
@@ -48,16 +65,41 @@ public class OthelloController implements BoardGameController {
         }
     }
 
+    private void handleGameOver() {
+        String winner;
+        int player1Score = game.getPlayer1().getScore();
+        int player2Score = game.getPlayer2().getScore();
+
+        if (player1Score > player2Score) {
+            winner = game.getPlayer1().getName();
+        } else if (player1Score < player2Score) {
+            winner = game.getPlayer2().getName();
+        } else {
+            winner = "Égalité";
+        }
+
+        othelloView.showGameOverDialog(game, winner, player1Score, player2Score);
+    }
+
     private void makeAIMove() {
         new Thread(() -> {
             try {
                 Thread.sleep(500);
                 BoardPosition aiMove = ai.findBestMove(game, game.getCurrentPlayer().getColor());
-                if (aiMove != null) {
-                    game.executeMove(aiMove);
-                    game.switchPlayer();
-                    javafx.application.Platform.runLater(this::updateGameDisplay);
-                }
+
+                javafx.application.Platform.runLater(() -> {
+                    if (aiMove != null) {
+                        game.executeMove(aiMove);
+
+                        if (game.isGameOver()) {
+                            handleGameOver();
+                        } else {
+                            game.switchPlayer();
+                            updateGameDisplay();
+                        }
+                    }
+                });
+
             } catch (InterruptedException e) {
                 System.err.println("Error during AI move: " + e.getMessage());
             }
