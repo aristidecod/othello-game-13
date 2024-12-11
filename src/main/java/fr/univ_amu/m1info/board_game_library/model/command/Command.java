@@ -1,4 +1,4 @@
-package fr.univ_amu.m1info.board_game_library.command;
+package fr.univ_amu.m1info.board_game_library.model.command;
 
 import fr.univ_amu.m1info.board_game_library.model.BoardPosition;
 

@@ -42,6 +42,4 @@ public interface BoardGameView {
     void removeShapesAtCell(int row, int column);
 
     void setButtonEnabled(String buttonId, boolean enabled);
-
-    void fireEventNewGame();
 }

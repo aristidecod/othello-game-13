@@ -1,7 +1,7 @@
 package fr.univ_amu.m1info.board_game_library.model;
 
-import fr.univ_amu.m1info.board_game_library.command.Command;
-import fr.univ_amu.m1info.board_game_library.command.MoveCommand;
+import fr.univ_amu.m1info.board_game_library.model.command.Command;
+import fr.univ_amu.m1info.board_game_library.model.command.MoveCommand;
 import fr.univ_amu.m1info.board_game_library.view.OthelloView;
 
 import java.util.Deque;
@@ -146,31 +146,6 @@ public class Game implements Cloneable {
     public boolean isOver() {
         return getValidMoves().isEmpty();
     }
-
-    /*public void checkGameOver() {
-        // Vérifie s'il y a des coups valides pour l'un ou l'autre des joueurs
-        List<BoardPosition> validMovesPlayer1 = getGrid().findValidMoves(getPlayer1().getColor());
-        List<BoardPosition> validMovesPlayer2 = getGrid().findValidMoves(getPlayer2().getColor());
-
-        if (validMovesPlayer1.isEmpty() && validMovesPlayer2.isEmpty()) {
-            // Compte les pions de chaque joueur
-            int player1Score = getPlayer1().getScore();
-            int player2Score = getPlayer2().getScore();
-
-            String winner;
-            if (player1Score > player2Score) {
-                winner = getPlayer1().getName();
-            } else if (player2Score > player1Score) {
-                winner = getPlayer2().getName();
-            } else {
-                winner = "Égalité";
-            }
-
-            javafx.application.Platform.runLater(() -> {
-                view.showGameOverDialog(winner, player1Score,player2Score);
-            });
-        }
-    }*/
 
     public boolean isGameOver() {
         List<BoardPosition> validMovesPlayer1 = getGrid().findValidMoves(getPlayer1().getColor());

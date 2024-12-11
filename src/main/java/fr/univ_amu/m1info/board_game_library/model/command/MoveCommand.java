@@ -1,9 +1,9 @@
-package fr.univ_amu.m1info.board_game_library.command;
+package fr.univ_amu.m1info.board_game_library.model.command;
 
+import fr.univ_amu.m1info.board_game_library.model.BoardPosition;
 import fr.univ_amu.m1info.board_game_library.model.Game;
 import fr.univ_amu.m1info.board_game_library.model.Grid;
 import fr.univ_amu.m1info.board_game_library.model.Player;
-import fr.univ_amu.m1info.board_game_library.model.BoardPosition;
 
 public class MoveCommand implements Command {
     private final Game game;

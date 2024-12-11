@@ -39,7 +39,7 @@ public class OthelloController implements BoardGameController {
 
             if (game.isGameOver()) {
                 handleGameOver();
-                return; // Ajout important
+                return;
             }
 
             game.switchPlayer();
@@ -48,10 +48,10 @@ public class OthelloController implements BoardGameController {
 
             // Si pas de coups possibles pour le joueur suivant
             if (game.getValidMoves().isEmpty()) {
-                if (game.isGameOver()) {  // On vérifie si c'est vraiment la fin
+                if (game.isGameOver()) {
                     handleGameOver();
                 } else {
-                    game.switchPlayer(); // On repasse au joueur précédent
+                    game.switchPlayer();
                     updateGameDisplay();
                 }
             }

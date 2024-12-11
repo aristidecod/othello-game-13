@@ -7,36 +7,29 @@ import fr.univ_amu.m1info.board_game_library.graphics.Color;
 import fr.univ_amu.m1info.board_game_library.graphics.Shape;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
-import fr.univ_amu.m1info.board_game_library.graphics.BoardGameView;
+
 
 public class JavaFXBoardGameView extends VBox implements BoardGameControllableView {
     private final Stage stage;
     private BoardGridView boardGridView;
     private Bar bar;
     private BoardGameController controller;
-    private Button newGameButton;
-    private final ButtonType newGameButtonType;
 
     public void setController(BoardGameController controller) {
         this.controller = controller;
     }
 
     public JavaFXBoardGameView(Stage stage) {
-        this.newGameButtonType = new ButtonType("Nouvelle partie", ButtonBar.ButtonData.OK_DONE);
-
         // Initialisation des boutons
         HBox buttonBar = new HBox(10);
         buttonBar.setAlignment(Pos.CENTER);
 
-        newGameButton = new Button("Nouvelle Partie");
+        Button newGameButton = new Button("Nouvelle Partie");
         String buttonStyle =
                 "-fx-background-color: #4CAF50; " +
                         "-fx-text-fill: white; " +
@@ -107,20 +100,4 @@ public class JavaFXBoardGameView extends VBox implements BoardGameControllableVi
 
     @Override
     public void setButtonEnabled(String buttonId, boolean enabled) {}
-
-    @Override
-    public void fireEventNewGame() {
-        Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Nouvelle partie");
-            alert.setHeaderText("Voulez-vous commencer une nouvelle partie ?");
-            alert.getButtonTypes().setAll(newGameButtonType, ButtonType.CANCEL);
-
-            alert.showAndWait().ifPresent(buttonType -> {
-                if (buttonType == newGameButtonType) {
-                    controller.buttonActionOnClick("NewGame");
-                }
-            });
-        });
-    }
 }

@@ -6,35 +6,17 @@ import fr.univ_amu.m1info.board_game_library.graphics.BoardGameView;
 import fr.univ_amu.m1info.board_game_library.graphics.Color;
 import fr.univ_amu.m1info.board_game_library.graphics.Shape;
 import fr.univ_amu.m1info.board_game_library.iterator.BoardIterator;
-import fr.univ_amu.m1info.board_game_library.controller.OthelloController;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.geometry.Pos;
-import javafx.geometry.Insets;
-import javafx.scene.control.ButtonBar.ButtonData;
-
-import javafx.scene.layout.HBox;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-
-import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
 
 public class OthelloView {
     private static final int BOARD_SIZE = 8;
     private final BoardGameView view;
     private List<BoardPosition> currentHighlightedCells;
-    private OthelloController controller;
-    private Button newGameButton;
-
-    public void setController(OthelloController controller) {
-        this.controller = controller;
-    }
 
     public OthelloView(BoardGameView view) {
         this.view = view;
@@ -168,7 +150,6 @@ public class OthelloView {
 
             dialog.showAndWait().ifPresent(response -> {
                 if (response == newGameButton) {
-                    // view.fireEventNewGame();
                     game.resetGame();
                     displayPawns(game.getGrid());
                     updateCurrentPlayer(game.getCurrentPlayerName());
@@ -179,8 +160,7 @@ public class OthelloView {
         });
     }
 
-    public void showMessage(String message) {
-        view.updateLabeledElement("Info", message, false);
+    public void showAIStatusMessage(boolean aiEnabled) {
+        view.updateLabeledElement("Info", aiEnabled ? "IA activée" : "IA désactivée", false);
     }
-
 }
