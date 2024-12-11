@@ -31,5 +31,6 @@ public class OthelloApplication {
         BoardGameController controller = new OthelloController();
         BoardGameApplicationLauncher launcher = JavaFXBoardGameApplicationLauncher.getInstance();
         launcher.launchApplication(boardGameConfiguration, controller);
+        
     }
 }

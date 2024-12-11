@@ -34,52 +34,6 @@ public class OthelloController implements BoardGameController {
         this.aiEnabled = enabled;
     }
 
-    private void checkGameOver() {
-        // Vérifie s'il y a des coups valides pour l'un ou l'autre des joueurs
-        List<BoardPosition> validMovesPlayer1 = game.getGrid().findValidMoves(game.getPlayer1().getColor());
-        List<BoardPosition> validMovesPlayer2 = game.getGrid().findValidMoves(game.getPlayer2().getColor());
-
-        if (validMovesPlayer1.isEmpty() && validMovesPlayer2.isEmpty()) {
-            // Compte les pions de chaque joueur
-            int player1Score = game.getPlayer1().getScore();
-            int player2Score = game.getPlayer2().getScore();
-
-            String winner;
-            if (player1Score > player2Score) {
-                winner = game.getPlayer1().getName();
-            } else if (player2Score > player1Score) {
-                winner = game.getPlayer2().getName();
-            } else {
-                winner = "Égalité";
-            }
-
-            javafx.application.Platform.runLater(() -> {
-                showGameOverDialog(winner);
-            });
-        }
-    }
-
-    private void showGameOverDialog(String winner) {
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-        alert.setTitle("Fin de la partie");
-        alert.setHeaderText("Game Over !");
-
-        String message = winner.equals("Égalité") ?
-                "Match nul !" :
-                "Le gagnant est : " + winner;
-
-        alert.setContentText(message);
-
-        javafx.scene.control.ButtonType newGameButton = new javafx.scene.control.ButtonType("Nouvelle Partie");
-        alert.getButtonTypes().setAll(newGameButton);
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == newGameButton) {
-                buttonActionOnClick("NewGame");
-            }
-        });
-    }
-
     public void boardActionOnClick(int row, int column) {
         BoardPosition position = new BoardPosition(row, column);
         if (game.executeMove(position)) {
@@ -88,7 +42,7 @@ public class OthelloController implements BoardGameController {
             updateGameDisplay();
 
             // Vérifier la fin de partie après chaque coup
-            checkGameOver();
+            game.checkGameOver();
 
             if (aiEnabled && game.getCurrentPlayer() == game.getPlayer2()) {
                 makeAIMove();
@@ -108,14 +62,14 @@ public class OthelloController implements BoardGameController {
                     game.switchPlayer();
                     javafx.application.Platform.runLater(() -> {
                         updateGameDisplay();
-                        checkGameOver();
+                        game.checkGameOver();
                     });
                 } else {
                     // L'IA n'a pas trouvé de coup valide
                     javafx.application.Platform.runLater(() -> {
                         game.switchPlayer(); // Retour au joueur humain
                         updateGameDisplay();
-                        checkGameOver(); // Vérifie si la partie est terminée
+                        game.checkGameOver(); // Vérifie si la partie est terminée
                     });
                 }
             } catch (InterruptedException e) {
@@ -153,5 +107,11 @@ public class OthelloController implements BoardGameController {
                 break;
         }
     }
+
+    /*public void newGame() {
+        game.resetGame();
+        updateGameDisplay();
+        othelloView.updateScores(game.getPlayer1(), game.getPlayer2());
+    }*/
 
 }
