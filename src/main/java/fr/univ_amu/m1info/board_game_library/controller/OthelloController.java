@@ -93,9 +93,20 @@ public class OthelloController implements BoardGameController {
 
                         if (game.isGameOver()) {
                             handleGameOver();
-                        } else {
-                            game.switchPlayer();
-                            updateGameDisplay();
+                            return;
+                        }
+
+                        game.switchPlayer();
+                        updateGameDisplay();
+
+                        // Vérification supplémentaire pour le joueur suivant
+                        if (game.getValidMoves().isEmpty()) {
+                            if (game.isGameOver()) {
+                                handleGameOver();
+                            } else {
+                                game.switchPlayer();
+                                updateGameDisplay();
+                            }
                         }
                     }
                 });
@@ -128,14 +139,26 @@ public class OthelloController implements BoardGameController {
                 break;
             case "Undo":
                 if (game.canUndo()) {
-                    game.undo();
+                    if (aiEnabled) {
+                        game.undo();
+                        game.undo();
+                    } else {
+                        game.undo();
+                    }
                     game.updateScores();
                     updateGameDisplay();
                 }
                 break;
             case "Redo":
                 if (game.canRedo()) {
-                    game.redo();
+
+                    if (aiEnabled) {
+                        game.redo();
+                        game.switchPlayer();
+                        game.redo();
+                    } else {
+                        game.redo();
+                    }
                     game.switchPlayer();
                     game.updateScores();
                     updateGameDisplay();

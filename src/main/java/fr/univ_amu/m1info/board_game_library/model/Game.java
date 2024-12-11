@@ -124,6 +124,8 @@ public class Game implements Cloneable {
     public void resetGame() {
         grid = new Grid();
         currentPlayer = player1;
+        undoHistory.clear();
+        redoHistory.clear();
         updateScores();
     }
 
