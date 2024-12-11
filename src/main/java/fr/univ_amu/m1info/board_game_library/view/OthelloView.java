@@ -1,14 +1,11 @@
 package fr.univ_amu.m1info.board_game_library.view;
 
-import fr.univ_amu.m1info.board_game_library.model.Grid;
+import fr.univ_amu.m1info.board_game_library.model.*;
 import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
-import fr.univ_amu.m1info.board_game_library.model.Pawn;
-import fr.univ_amu.m1info.board_game_library.model.Player;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameView;
 import fr.univ_amu.m1info.board_game_library.graphics.Color;
 import fr.univ_amu.m1info.board_game_library.graphics.Shape;
 import fr.univ_amu.m1info.board_game_library.iterator.BoardIterator;
-import fr.univ_amu.m1info.board_game_library.model.BoardPosition;
 import fr.univ_amu.m1info.board_game_library.controller.OthelloController;
 
 import java.util.ArrayList;
@@ -114,7 +111,7 @@ public class OthelloView {
         }
     }
 
-    public void showGameOverDialog(String winner, int scoreNoirs, int scoreBlancs) {
+    public void showGameOverDialog(Game game, String winner, int scoreNoirs, int scoreBlancs) {
         Platform.runLater(() -> {
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setTitle("Partie terminée !");
@@ -131,8 +128,8 @@ public class OthelloView {
             Label blancLabel = new Label(String.format("Blancs : %d", scoreBlancs));
 
             Label winnerLabel = new Label(
-                    scoreNoirs > scoreBlancs ? "Les Noirs gagnent !" :
-                            scoreBlancs > scoreNoirs ? "Les Blancs gagnent !" :
+                    scoreNoirs > scoreBlancs ? winner + "a gagné" :
+                            scoreBlancs > scoreNoirs ?  winner + "a gagné" :
                                     "Match nul !"
             );
             winnerLabel.setStyle("-fx-font-weight: bold;");
@@ -167,7 +164,12 @@ public class OthelloView {
 
             dialog.showAndWait().ifPresent(response -> {
                 if (response == newGameButton) {
-                    view.fireEventNewGame();
+                    // view.fireEventNewGame();
+                    game.resetGame();
+                    displayPawns(game.getGrid());
+                    updateCurrentPlayer(game.getCurrentPlayerName());
+                    highlightCells(game.getValidMoves());
+                    updateUndoButton(game.canUndo());
                 }
             });
         });

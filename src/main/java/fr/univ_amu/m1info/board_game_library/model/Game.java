@@ -126,7 +126,7 @@ public class Game implements Cloneable {
         return getValidMoves().isEmpty();
     }
 
-    public void checkGameOver() {
+    /*public void checkGameOver() {
         // Vérifie s'il y a des coups valides pour l'un ou l'autre des joueurs
         List<BoardPosition> validMovesPlayer1 = getGrid().findValidMoves(getPlayer1().getColor());
         List<BoardPosition> validMovesPlayer2 = getGrid().findValidMoves(getPlayer2().getColor());
@@ -146,8 +146,14 @@ public class Game implements Cloneable {
             }
 
             javafx.application.Platform.runLater(() -> {
-                view.showGameOverDialog(winner,player1Score,player2Score);
+                view.showGameOverDialog(winner, player1Score,player2Score);
             });
         }
+    }*/
+
+    public boolean isGameOver() {
+        List<BoardPosition> validMovesPlayer1 = getGrid().findValidMoves(getPlayer1().getColor());
+        List<BoardPosition> validMovesPlayer2 = getGrid().findValidMoves(getPlayer2().getColor());
+        return validMovesPlayer1.isEmpty() && validMovesPlayer2.isEmpty();
     }
 }

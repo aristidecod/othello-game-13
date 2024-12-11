@@ -29,7 +29,7 @@ tasks.withType(JavaCompile).configureEach {
 
 application {
     mainModule = 'fr.univ_amu.m1info.board_game_library'
-    mainClass = 'fr.univ_amu.m1info.board_game_library.HelloApplication'
+    mainClass = 'fr.univ_amu.m1info.board_game_library.OthelloApplication'
 }
 
 javafx {
