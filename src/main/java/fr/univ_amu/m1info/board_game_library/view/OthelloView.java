@@ -53,6 +53,10 @@ public class OthelloView {
         view.setButtonEnabled("Undo", canUndo);
     }
 
+    public void updateRedoButton(boolean canRedo) {
+        view.setButtonEnabled("Redo", canRedo);
+    }
+
     public void displayPawns(Grid grid) {
         clearBoard();
         BoardIterator iterator = new GridIterator(BOARD_SIZE);

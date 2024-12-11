@@ -4,10 +4,7 @@ import fr.univ_amu.m1info.board_game_library.controller.OthelloController;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameApplicationLauncher;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameController;
 import fr.univ_amu.m1info.board_game_library.graphics.JavaFXBoardGameApplicationLauncher;
-import fr.univ_amu.m1info.board_game_library.graphics.configuration.BoardGameConfiguration;
-import fr.univ_amu.m1info.board_game_library.graphics.configuration.BoardGameDimensions;
-import fr.univ_amu.m1info.board_game_library.graphics.configuration.LabeledElementConfiguration;
-import fr.univ_amu.m1info.board_game_library.graphics.configuration.LabeledElementKind;
+import fr.univ_amu.m1info.board_game_library.graphics.configuration.*;
 
 import java.util.List;
 
@@ -17,14 +14,69 @@ public class OthelloApplication {
                 "Othello Game",
                 new BoardGameDimensions(8, 8),
                 List.of(
-                        new LabeledElementConfiguration("New Game", "NewGame", LabeledElementKind.BUTTON),
-                        new LabeledElementConfiguration("Show Console Grid", "ShowConsole", LabeledElementKind.BUTTON),
-                        new LabeledElementConfiguration("Undo", "Undo", LabeledElementKind.BUTTON),
-                        new LabeledElementConfiguration("IA", "AIToggle", LabeledElementKind.BUTTON),
-                        new LabeledElementConfiguration("Current Player", "currentPlayerLabel", LabeledElementKind.TEXT),
-                        new LabeledElementConfiguration("", "Info", LabeledElementKind.TEXT),
-                        new LabeledElementConfiguration("", "player1Score", LabeledElementKind.TEXT),
-                        new LabeledElementConfiguration("", "player2Score", LabeledElementKind.TEXT)
+                        // Contrôles en haut
+                        new LabeledElementConfiguration(
+                                "New Game",
+                                "NewGame",
+                                LabeledElementKind.BUTTON,
+                                new Position(0, 0, 1, 1)
+                        ),
+                        new LabeledElementConfiguration(
+                                "Show Console Grid",
+                                "ShowConsole",
+                                LabeledElementKind.BUTTON,
+                                new Position(0, 1, 1, 1)
+                        ),
+
+                        // Undo/Redo
+                        new LabeledElementConfiguration(
+                                "Undo",
+                                "Undo",
+                                LabeledElementKind.BUTTON,
+                                new Position(0, 2, 1, 1)
+                        ),
+                        new LabeledElementConfiguration(
+                                "Redo",
+                                "Redo",
+                                LabeledElementKind.BUTTON,
+                                new Position(0, 3, 1, 1)
+                        ),
+
+                        // Bouton IA
+                        new LabeledElementConfiguration(
+                                "IA",
+                                "AIToggle",
+                                LabeledElementKind.BUTTON,
+                                new Position(0, 4, 1, 1)
+                        ),
+
+                        // Informations joueur et jeu
+                        new LabeledElementConfiguration(
+                                "Current Player",
+                                "currentPlayerLabel",
+                                LabeledElementKind.TEXT,
+                                new Position(1, 0, 2, 1)
+                        ),
+                        new LabeledElementConfiguration(
+                                "",
+                                "Info",
+                                LabeledElementKind.TEXT,
+                                new Position(1, 1, 2, 1)
+                        ),
+
+                        // Scores
+                        new LabeledElementConfiguration(
+                                "",
+                                "player1Score",
+                                LabeledElementKind.TEXT,
+                                new Position(3, 0, 2, 1)
+                        ),
+                        new LabeledElementConfiguration(
+                                "",
+                                "player2Score",
+                                LabeledElementKind.TEXT,
+                                new Position(3, 1, 2, 1)
+                        )
                 )
         );
 
