@@ -16,11 +16,13 @@ import javafx.geometry.Pos;
 public class OthelloView {
     private static final int BOARD_SIZE = 8;
     private final BoardGameView view;
-    private List<BoardPosition> currentHighlightedCells;
+    private final List<BoardPosition> currentHighlightedCells;
+    private BoardPosition lastPlayedPosition;
 
     public OthelloView(BoardGameView view) {
         this.view = view;
         this.currentHighlightedCells = new ArrayList<>();
+        this.lastPlayedPosition = null;
     }
 
     public void initializeBoard() {
@@ -46,22 +48,55 @@ public class OthelloView {
             BoardPosition position = iterator.next();
             Pawn pawn = grid.getPawn(position);
             if (pawn != null) {
+                currentHighlightedCells.remove(position);
+                setCheckerboardPattern(position.row(), position.col());
+
+                // D'abord placer le pion principal
                 Color pieceColor = switch (pawn.getColor()) {
                     case BLACK -> Color.BLACK;
                     case WHITE -> Color.WHITE;
                 };
+
+                // Créer un nouveau Group ou StackPane pour chaque cellule
+                view.clearCell(position.row(), position.col());  // Vous devrez ajouter cette méthode
                 view.addShapeAtCell(position.row(), position.col(), Shape.CIRCLE, pieceColor);
+
+                // Ensuite ajouter le point rouge si c'est la dernière position jouée
+                if (lastPlayedPosition != null &&
+                        position.row() == lastPlayedPosition.row() &&
+                        position.col() == lastPlayedPosition.col()) {
+                    view.addShapeAtCellWithSize(position.row(), position.col(),
+                            Shape.CIRCLE, Color.RED, 0.15);
+                }
             }
         }
     }
 
+    public void resetLastPlayedPosition() {
+        lastPlayedPosition = null;
+    }
+
+    public void markLastPlayedPosition(BoardPosition position) {
+        lastPlayedPosition = position;
+        if (position != null) {
+            view.addShapeAtCellWithSize(position.row(), position.col(),
+                    Shape.CIRCLE, Color.LIGHT_RED, 0.2);
+        }
+    }
+
     public void highlightCells(List<BoardPosition> newPositions) {
+        // Supprime les anciens indicateurs
         for (BoardPosition position : currentHighlightedCells) {
             setCheckerboardPattern(position.row(), position.col());
+            view.removeShapesAtCell(position.row(), position.col());
         }
-        currentHighlightedCells = new ArrayList<>(newPositions);
+        currentHighlightedCells.clear();
+
+        // Ajoute les nouveaux indicateurs et met à jour la liste
         for (BoardPosition position : newPositions) {
-            view.setCellColor(position.row(), position.col(), Color.LIGHTBLUE);
+            setCheckerboardPattern(position.row(), position.col());
+            view.addShapeAtCellWithSize(position.row(), position.col(), Shape.CIRCLE, Color.TRANSPARENT_LIGHTBLUE, 0.3);
+            currentHighlightedCells.add(position);
         }
     }
 
@@ -77,11 +112,11 @@ public class OthelloView {
     }
 
     public void showInvalidMoveMessage() {
-        view.updateLabeledElement("Info", "       Invalid Move", true);
+        view.updateLabeledElement("Info", "      Invalid Move", true);
     }
 
     public void showAIStatusMessage(boolean aiEnabled) {
-        view.updateLabeledElement("Info", aiEnabled ? "          IA activée" : "       IA désactivée", true);
+        view.updateLabeledElement("Info", aiEnabled ? "           IA activée" : "      IA désactivée", true);
     }
 
     public void clearMessages() {
@@ -89,7 +124,6 @@ public class OthelloView {
     }
 
     private void setCheckerboardPattern(int row, int col) {
-        boolean isEven = (row + col) % 2 == 0;
         view.setCellColor(row, col, Color.GREEN);
     }
 

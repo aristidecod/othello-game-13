@@ -39,7 +39,10 @@ public enum Color {
     /** A dark shade of blue. */
     DARKBLUE,
     /** A dark shade of blue. */
-    YELLOW
+    YELLOW,
 
+    TRANSPARENT_LIGHTBLUE,
+
+    MEDIUM_SEAGREEN,
 }
 

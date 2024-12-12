@@ -23,7 +23,7 @@ public class OthelloApplication {
                                 new Position(1, 6, 1, 3),
                                 BarPosition.TOP
                         ),
-                        // Barre supérieure - deuxième ligne
+                        // Barre supérieure  deuxième ligne
                         new LabeledElementConfiguration(
                                 "Current Player:",
                                 "currentPlayerLabel",

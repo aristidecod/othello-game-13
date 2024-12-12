@@ -35,8 +35,13 @@ public class JavaFXBoardGameView extends VBox implements BoardGameControllableVi
 
         // Création des barres
         topBar = new Bar();
+        topBar.getStyleClass().add("top-bar");
+
         bottomBar = new Bar();
+        bottomBar.getStyleClass().add("bottom-bar");
+
         boardGridView = new BoardGridView();
+        boardGridView.getStyleClass().add("game-board");
 
         // Placement des éléments dans le BorderPane
         mainLayout.setTop(topBar);
@@ -72,6 +77,11 @@ public class JavaFXBoardGameView extends VBox implements BoardGameControllableVi
     }
 
     @Override
+    public synchronized void addShapeAtCellWithSize(int row, int column, Shape shape, Color color, double sizeRatio) {
+        boardGridView.addShapeAtSquareWithSize(row, column, shape, color, sizeRatio);
+    }
+
+    @Override
     public synchronized void removeShapesAtCell(int row, int column) {
         boardGridView.removeShapesAtSquare(row, column);
     }
@@ -102,4 +112,9 @@ public class JavaFXBoardGameView extends VBox implements BoardGameControllableVi
 
     @Override
     public void setButtonEnabled(String buttonId, boolean enabled) {}
+
+    @Override
+    public synchronized void clearCell(int row, int column) {
+        boardGridView.clearSquare(row, column);
+    }
 }

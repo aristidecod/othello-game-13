@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 
 public class JavaFXBoardGameApplication extends Application {
 
-
     @Override
     public void start(Stage stage) {
         var launcher = JavaFXBoardGameApplicationLauncher.getInstance();
@@ -20,6 +19,13 @@ public class JavaFXBoardGameApplication extends Application {
         BoardGameControllableView view = viewBuilder.getView();
         view.setController(controller);
         controller.initializeViewOnStart(view);
+
+        var cssResource = getClass().getResource("/board-game.css");
+        if (cssResource != null) {
+            stage.getScene().getStylesheets().add(cssResource.toExternalForm());
+        } else {
+            System.err.println("Could not find CSS file: board-game.css");
+        }
         stage.show();
     }
 }

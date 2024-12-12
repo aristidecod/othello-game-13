@@ -32,6 +32,7 @@ public interface BoardGameView {
      * @param color the color of the shape.
      */
     void addShapeAtCell(int row, int column, Shape shape, Color color);
+    void addShapeAtCellWithSize(int row, int col, Shape shape, Color color, double sizeRatio);
 
     /**
      * Removes all shapes from a specific cell on the game board.
@@ -42,4 +43,6 @@ public interface BoardGameView {
     void removeShapesAtCell(int row, int column);
 
     void setButtonEnabled(String buttonId, boolean enabled);
+
+    void clearCell(int row, int column);
 }

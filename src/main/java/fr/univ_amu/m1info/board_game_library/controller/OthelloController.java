@@ -36,6 +36,7 @@ public class OthelloController implements BoardGameController {
         BoardPosition position = new BoardPosition(row, column);
         if (game.executeMove(position)) {
             othelloView.clearMessages();
+            othelloView.markLastPlayedPosition(position);
 
             if (game.isGameOver()) {
                 handleGameOver();
@@ -90,6 +91,7 @@ public class OthelloController implements BoardGameController {
                 javafx.application.Platform.runLater(() -> {
                     if (aiMove != null) {
                         game.executeMove(aiMove);
+                        othelloView.markLastPlayedPosition(aiMove);
 
                         if (game.isGameOver()) {
                             handleGameOver();
@@ -131,6 +133,7 @@ public class OthelloController implements BoardGameController {
         switch (buttonId) {
             case "NewGame":
                 game.resetGame();
+                othelloView.resetLastPlayedPosition();
                 game.updateScores();
                 updateGameDisplay();
                 break;
@@ -163,7 +166,7 @@ public class OthelloController implements BoardGameController {
                 break;
             case "AIToggle":
                 game.resetGame();
-                aiEnabled = !aiEnabled;
+                setAiEnabled(aiEnabled);
                 othelloView.showAIStatusMessage(aiEnabled);
                 updateGameDisplay();
                 break;

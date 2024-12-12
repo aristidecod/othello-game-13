@@ -14,6 +14,7 @@ public class BoardGridView extends GridPane {
     private BoardActionOnClick boardActionOnClick;
 
     public BoardGridView() {
+        this.getStyleClass().add("game-board");
     }
 
     public void setDimensions(int rowCount, int columnCount) {
@@ -54,8 +55,16 @@ public class BoardGridView extends GridPane {
         squareViews[row][column].addShape(shape, color);
     }
 
+    public void addShapeAtSquareWithSize(int row, int column, Shape shape, Color color, double sizeRatio) {
+        squareViews[row][column].addShapeWithCustomSize(shape, color, sizeRatio);
+    }
+
     public void removeShapesAtSquare(int row, int column) {
         squareViews[row][column].removeShapes();
+    }
+
+    public void clearSquare(int row, int column) {
+        squareViews[row][column].clearShapes();
     }
 }
 

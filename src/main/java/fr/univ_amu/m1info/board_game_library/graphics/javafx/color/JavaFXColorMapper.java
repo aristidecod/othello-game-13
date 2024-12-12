@@ -1,6 +1,5 @@
 package fr.univ_amu.m1info.board_game_library.graphics.javafx.color;
 
-
 import fr.univ_amu.m1info.board_game_library.graphics.Color;
 
 public class JavaFXColorMapper {
@@ -22,6 +21,8 @@ public class JavaFXColorMapper {
             case LIGHTGREEN -> javafx.scene.paint.Color.LIGHTGREEN;
             case LIGHT_RED -> LIGHT_RED;
             case YELLOW -> javafx.scene.paint.Color.YELLOW;
+            case MEDIUM_SEAGREEN -> javafx.scene.paint.Color.MEDIUMSEAGREEN;
+            case TRANSPARENT_LIGHTBLUE -> javafx.scene.paint.Color.rgb(173, 216, 230, 0.3);
         };
     }
 }

@@ -22,11 +22,19 @@ public class Bar extends GridPane {
     }
 
     public void addLabel(String id, String initialText, int row, int column, int rowSpan, int columnSpan) {
-        if(labeledElements.containsKey(id)){
+        if(labeledElements.containsKey(id)) {
             throw new IllegalArgumentException("Label " + id + " already exists");
         }
+
         Label label = new Label(initialText);
         label.setAlignment(Pos.BASELINE_CENTER);
+
+        if (id.equals("Info")) {
+            label.setId("Info");
+        } else if (id.equals("player1Score") || id.equals("player2Score")) {
+            label.setId(id);
+        }
+
         labeledElements.put(id, label);
         add(label, column, row, columnSpan, rowSpan);
     }
@@ -37,16 +45,21 @@ public class Bar extends GridPane {
 
     public void addButton(String id, String label, int row, int column, int rowSpan, int columnSpan) {
         Button button = new Button(label);
+        button.getStyleClass().add("button");
+        button.setId(id);
         labeledElements.put(id, button);
         buttons.put(id, button);
         add(button, column, row, columnSpan, rowSpan);
     }
 
-    public void updateLabel(String id, String newText, boolean bold){
-        if(labeledElements.containsKey(id)){
-            labeledElements.get(id).setText(newText);
-            if(bold){
-                labeledElements.get(id).setStyle("-fx-font-weight: bold");
+    public void updateLabel(String id, String newText, boolean bold) {
+        if(labeledElements.containsKey(id)) {
+            Labeled element = labeledElements.get(id);
+            element.setText(newText);
+            if(bold) {
+                element.getStyleClass().add("bold-text");
+            } else {
+                element.getStyleClass().remove("bold-text");
             }
         }
     }
@@ -54,12 +67,4 @@ public class Bar extends GridPane {
     public boolean containsElement(String id) {
         return labeledElements.containsKey(id);
     }
-    /* Méthodes de compatibilité pour l'ancien code
-    public void addLabel(String id, String initialText) {
-        addLabel(id, initialText, 0, 0, 1, 1);
-    }
-
-    public void addButton(String id, String label) {
-        addButton(id, label, 0, 0, 1, 1);
-    }*/
 }

@@ -19,6 +19,14 @@ java {
     }
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+
 ext {
     junitVersion = '5.10.2'
 }

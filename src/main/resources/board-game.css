@@ -1,0 +1,96 @@
+/* styles/othello.css */
+
+/* Barres supérieure et inférieure */
+.top-bar {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 10px;
+}
+
+.bottom-bar {
+    -fx-background-color: #34495e;
+    -fx-padding: 10px;
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+#player1Score, #player2Score {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+#Info {
+    -fx-font-size: 14px;
+    -fx-text-fill: #e74c3c;
+}
+
+.bold-text {
+    -fx-font-weight: bold;
+}
+
+/* Boutons */
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 18px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+    -fx-cursor: hand;
+}
+
+/* Plateau de jeu */
+.game-board {
+    -fx-background-color: #27ae60;
+    -fx-padding: 10px;
+    -fx-border-color: #2ecc71;
+    -fx-border-width: 2px;
+    -fx-grid-lines-visible: true;
+    -fx-hgap: 1;
+    -fx-vgap: 1;
+}
+
+.board-cell {
+    -fx-background-color: transparent;
+}
+
+.board-cell:hover {
+    -fx-opacity: 0.9;
+    -fx-cursor: hand;
+}
+
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+}
+
+.title-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.winner-label {
+    -fx-font-weight: bold;
+}
+
+.dialog-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.content-box {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
