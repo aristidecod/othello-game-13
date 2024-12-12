@@ -7,41 +7,23 @@ import fr.univ_amu.m1info.board_game_library.graphics.Color;
 import fr.univ_amu.m1info.board_game_library.graphics.Shape;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.layout.HBox;
-import javafx.geometry.Pos;
 
 
 public class JavaFXBoardGameView extends VBox implements BoardGameControllableView {
     private final Stage stage;
     private BoardGridView boardGridView;
-    private Bar bar;
     private BoardGameController controller;
+    private Bar topBar;
+    private Bar bottomBar;
 
     public void setController(BoardGameController controller) {
         this.controller = controller;
     }
 
     public JavaFXBoardGameView(Stage stage) {
-        // Initialisation des boutons
-        HBox buttonBar = new HBox(10);
-        buttonBar.setAlignment(Pos.CENTER);
-
-        Button newGameButton = new Button("Nouvelle Partie");
-        String buttonStyle =
-                "-fx-background-color: #4CAF50; " +
-                        "-fx-text-fill: white; " +
-                        "-fx-font-weight: bold; " +
-                        "-fx-padding: 8px 16px; " +
-                        "-fx-border-radius: 4px; " +
-                        "-fx-cursor: hand;";
-        newGameButton.setStyle(buttonStyle);
-
-        buttonBar.getChildren().add(newGameButton);
-        this.getChildren().add(buttonBar);
-
         this.stage = stage;
         stage.setOnCloseRequest(_ -> Platform.exit());
         stage.setResizable(false);
@@ -49,18 +31,34 @@ public class JavaFXBoardGameView extends VBox implements BoardGameControllableVi
     }
 
     public synchronized void reset() {
-        VBox vBox = new VBox();
-        bar = new Bar();
+        BorderPane mainLayout = new BorderPane();
+
+        // Création des barres
+        topBar = new Bar();
+        bottomBar = new Bar();
         boardGridView = new BoardGridView();
-        vBox.getChildren().add(bar);
-        vBox.getChildren().add(boardGridView);
-        Scene scene = new Scene(vBox);
+
+        // Placement des éléments dans le BorderPane
+        mainLayout.setTop(topBar);
+        mainLayout.setCenter(boardGridView);
+        mainLayout.setBottom(bottomBar);
+
+        Scene scene = new Scene(mainLayout);
         stage.setScene(scene);
     }
 
     @Override
     public synchronized void updateLabeledElement(String id, String newText, boolean bold) {
-        Platform.runLater(() -> bar.updateLabel(id, newText, bold));
+        Platform.runLater(() -> {
+            // Vérifier d'abord dans la barre du haut
+            if (topBar.containsElement(id)) {
+                topBar.updateLabel(id, newText, bold);
+            }
+            // Puis dans la barre du bas
+            else if (bottomBar.containsElement(id)) {
+                bottomBar.updateLabel(id, newText, bold);
+            }
+        });
     }
 
     @Override
@@ -86,8 +84,12 @@ public class JavaFXBoardGameView extends VBox implements BoardGameControllableVi
         return stage;
     }
 
-    public Bar getBar() {
-        return bar;
+    public Bar getTopBar() {
+        return topBar;
+    }
+
+    public Bar getBottomBar() {
+        return bottomBar;
     }
 
     public void boardActionOnclick(int row, int column) {

@@ -96,24 +96,6 @@ public class Grid implements Cloneable {
     }
 
     /**
-     * Affiche la grille de jeu dans la console.
-     * Les pions noirs sont représentés par 'B', les pions blancs par 'W', et les cases vides par '-'.
-     */
-    public void displayGrid() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (squares[i][j] == null) {
-                    System.out.print("- ");
-                } else {
-                    Pawn pawn = squares[i][j];
-                    System.out.print(pawn.getColor() == PlayerColor.BLACK ? "B " : "W ");
-                }
-            }
-            System.out.println();
-        }
-    }
-
-    /**
      * Retourne le pion à une position donnée.
      * @param position La position sur le plateau
      * @return Le pion à la position donnée

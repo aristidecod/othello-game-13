@@ -50,6 +50,10 @@ public class Bar extends GridPane {
             }
         }
     }
+
+    public boolean containsElement(String id) {
+        return labeledElements.containsKey(id);
+    }
     /* Méthodes de compatibilité pour l'ancien code
     public void addLabel(String id, String initialText) {
         addLabel(id, initialText, 0, 0, 1, 1);

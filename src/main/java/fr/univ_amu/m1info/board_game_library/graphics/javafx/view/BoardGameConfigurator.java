@@ -2,6 +2,8 @@ package fr.univ_amu.m1info.board_game_library.graphics.javafx.view;
 
 import fr.univ_amu.m1info.board_game_library.graphics.configuration.BoardGameConfiguration;
 import fr.univ_amu.m1info.board_game_library.graphics.configuration.LabeledElementConfiguration;
+import fr.univ_amu.m1info.board_game_library.graphics.javafx.bar.BarPosition;
+
 
 public class BoardGameConfigurator {
     public void configure(BoardGameViewBuilder boardGameViewBuilder,
@@ -17,6 +19,7 @@ public class BoardGameConfigurator {
                 case BUTTON -> boardGameViewBuilder = boardGameViewBuilder.addButton(
                         elementConfiguration.id(),
                         elementConfiguration.label(),
+                        elementConfiguration.barPosition(),
                         elementConfiguration.position().row(),
                         elementConfiguration.position().column(),
                         elementConfiguration.position().rowSpan(),
@@ -25,6 +28,7 @@ public class BoardGameConfigurator {
                 case TEXT -> boardGameViewBuilder = boardGameViewBuilder.addLabel(
                         elementConfiguration.id(),
                         elementConfiguration.label(),
+                        elementConfiguration.barPosition(),
                         elementConfiguration.position().row(),
                         elementConfiguration.position().column(),
                         elementConfiguration.position().rowSpan(),
