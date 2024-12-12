@@ -13,6 +13,7 @@ public class OthelloController implements BoardGameController {
     private final Game game;
     private final OthelloAI ai;
     private boolean aiEnabled = false;
+    private boolean isAITurn = false;
 
     public OthelloController() {
         this.game = new Game();
@@ -33,6 +34,10 @@ public class OthelloController implements BoardGameController {
     }
 
     public void boardActionOnClick(int row, int column) {
+        if(isAITurn) {
+            return;
+        }
+
         BoardPosition position = new BoardPosition(row, column);
         if (game.executeMove(position)) {
             othelloView.clearMessages();
@@ -83,6 +88,7 @@ public class OthelloController implements BoardGameController {
     }
 
     private void makeAIMove() {
+        isAITurn = true;
         new Thread(() -> {
             try {
                 Thread.sleep(500);
@@ -111,10 +117,12 @@ public class OthelloController implements BoardGameController {
                             }
                         }
                     }
+                    isAITurn = false;
                 });
 
             } catch (InterruptedException e) {
                 System.err.println("Error during AI move: " + e.getMessage());
+                isAITurn = false;
             }
         }).start();
     }
