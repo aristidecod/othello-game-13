@@ -165,6 +165,7 @@ public class OthelloController implements BoardGameController {
                         game.redo();
                         game.switchPlayer();
                         game.redo();
+                        game.switchPlayer();
                         BoardPosition lastPos = game.getLastPlayedPosition();
                         othelloView.markLastPlayedPosition(lastPos);
                     } else {
