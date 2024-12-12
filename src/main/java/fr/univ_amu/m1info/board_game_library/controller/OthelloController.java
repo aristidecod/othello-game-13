@@ -159,23 +159,21 @@ public class OthelloController implements BoardGameController {
                 break;
             case "Redo":
                 if (game.canRedo()) {
-
                     if (aiEnabled) {
                         game.redo();
-                        game.switchPlayer();
                         game.redo();
                     } else {
                         game.redo();
                     }
-                    game.switchPlayer();
                     game.updateScores();
                     updateGameDisplay();
                 }
                 break;
             case "AIToggle":
                 game.resetGame();
-                setAiEnabled(aiEnabled);
+                setAiEnabled(!aiEnabled);
                 othelloView.showAIStatusMessage(aiEnabled);
+                othelloView.resetLastPlayedPosition();
                 updateGameDisplay();
                 break;
         }

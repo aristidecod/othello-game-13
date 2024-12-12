@@ -10,7 +10,7 @@ import java.util.List;
  * Classe de test pour la classe Game
  * Cette classe vérifie toutes les fonctionnalités principales du jeu Othello
  */
-public class GameTest {
+public class TestGame {
 
     /**
      * Teste l'état initial du jeu après sa création
@@ -77,8 +77,7 @@ public class GameTest {
 
         assertNotNull(validMoves, "La liste des mouvements valides ne devrait pas être null");
         assertFalse(validMoves.isEmpty(), "Il devrait y avoir des mouvements valides au début du jeu");
-
-           }
+    }
 
 
 
@@ -94,7 +93,6 @@ public class GameTest {
         assertFalse(game.isGameOver(), "Le jeu ne devrait pas être terminé au début");
 
         // Note:Pour tester une fin de partie réelle, il faudrait simuler une partie complète
-        // ou mettre la grille dans un état de fin de partie
     }
 
     /**
