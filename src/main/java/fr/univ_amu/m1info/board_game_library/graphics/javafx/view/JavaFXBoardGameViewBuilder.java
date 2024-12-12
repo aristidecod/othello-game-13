@@ -1,5 +1,7 @@
 package fr.univ_amu.m1info.board_game_library.graphics.javafx.view;
 
+import fr.univ_amu.m1info.board_game_library.graphics.javafx.bar.Bar;
+import fr.univ_amu.m1info.board_game_library.graphics.javafx.bar.BarPosition;
 import javafx.stage.Stage;
 
 public class JavaFXBoardGameViewBuilder implements BoardGameViewBuilder {
@@ -29,15 +31,27 @@ public class JavaFXBoardGameViewBuilder implements BoardGameViewBuilder {
     }
 
     @Override
-    public BoardGameViewBuilder addLabel(String id, String initialText, int row, int column, int rowSpan, int columnSpan) {
-        boardGameView.getBar().addLabel(id, initialText, row, column, rowSpan, columnSpan);
+    public BoardGameViewBuilder addButton(String id, String label, BarPosition barPosition, int row, int column, int rowSpan, int columnSpan) {
+        Bar targetBar = switch (barPosition) {
+            case TOP -> boardGameView.getTopBar();
+            case BOTTOM -> boardGameView.getBottomBar();
+        };
+
+        targetBar.addButton(id, label, row, column, rowSpan, columnSpan);
+        targetBar.setButtonAction(id, () -> boardGameView.buttonActionOnclick(id));
         return this;
     }
 
     @Override
-    public BoardGameViewBuilder addButton(String id, String label, int row, int column, int rowSpan, int columnSpan) {
-        boardGameView.getBar().addButton(id, label, row, column, rowSpan, columnSpan);
-        boardGameView.getBar().setButtonAction(id, ()->boardGameView.buttonActionOnclick(id));
+    public BoardGameViewBuilder addLabel(String id, String initialText, BarPosition position, int row, int column, int rowSpan, int columnSpan) {
+        switch (position) {
+            case TOP:
+                boardGameView.getTopBar().addLabel(id, initialText, row, column, rowSpan, columnSpan);
+                break;
+            case BOTTOM:
+                boardGameView.getBottomBar().addLabel(id, initialText, row, column, rowSpan, columnSpan);
+                break;
+        }
         return this;
     }
 
@@ -45,5 +59,4 @@ public class JavaFXBoardGameViewBuilder implements BoardGameViewBuilder {
     public BoardGameControllableView getView() {
         return boardGameView;
     }
-
 }

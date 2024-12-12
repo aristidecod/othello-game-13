@@ -77,7 +77,11 @@ public class OthelloView {
     }
 
     public void showInvalidMoveMessage() {
-        view.updateLabeledElement("Info", "Invalid Move", true);
+        view.updateLabeledElement("Info", "       Invalid Move", true);
+    }
+
+    public void showAIStatusMessage(boolean aiEnabled) {
+        view.updateLabeledElement("Info", aiEnabled ? "          IA activée" : "       IA désactivée", true);
     }
 
     public void clearMessages() {
@@ -86,7 +90,7 @@ public class OthelloView {
 
     private void setCheckerboardPattern(int row, int col) {
         boolean isEven = (row + col) % 2 == 0;
-        view.setCellColor(row, col, isEven ? Color.GREEN : Color.LIGHTGREEN);
+        view.setCellColor(row, col, Color.GREEN);
     }
 
     private void clearBoard() {
@@ -158,9 +162,5 @@ public class OthelloView {
                 }
             });
         });
-    }
-
-    public void showAIStatusMessage(boolean aiEnabled) {
-        view.updateLabeledElement("Info", aiEnabled ? "IA activée" : "IA désactivée", false);
     }
 }

@@ -123,9 +123,6 @@ public class OthelloController implements BoardGameController {
                 game.updateScores();
                 updateGameDisplay();
                 break;
-            case "ShowConsole":
-                game.getGrid().displayGrid();
-                break;
             case "Undo":
                 if (game.canUndo()) {
                     game.undo();
