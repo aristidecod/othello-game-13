@@ -126,6 +126,8 @@ public class Game implements Cloneable {
         currentPlayer = player1;
         undoHistory.clear();
         redoHistory.clear();
+        Command command = new MoveCommand(this);
+        undoHistory.push(command);
         updateScores();
     }
 
@@ -153,5 +155,12 @@ public class Game implements Cloneable {
         List<BoardPosition> validMovesPlayer1 = getGrid().findValidMoves(getPlayer1().getColor());
         List<BoardPosition> validMovesPlayer2 = getGrid().findValidMoves(getPlayer2().getColor());
         return validMovesPlayer1.isEmpty() && validMovesPlayer2.isEmpty();
+    }
+
+    public BoardPosition getLastPlayedPosition() {
+        if (!undoHistory.isEmpty()) {
+            return undoHistory.peek().getLastPosition();
+        }
+        return null;
     }
 }

@@ -7,6 +7,7 @@ import fr.univ_amu.m1info.board_game_library.view.OthelloView;
 import fr.univ_amu.m1info.board_game_library.graphics.*;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameView;
 import fr.univ_amu.m1info.board_game_library.model.BoardPosition;
+import javafx.application.Platform;
 
 public class OthelloController implements BoardGameController {
     private OthelloView othelloView;
@@ -42,30 +43,32 @@ public class OthelloController implements BoardGameController {
         if (game.executeMove(position)) {
             othelloView.clearMessages();
             othelloView.markLastPlayedPosition(position);
+            updateGameDisplay();  // Mise à jour immédiate de l'affichage
 
-            if (game.isGameOver()) {
-                handleGameOver();
-                return;
-            }
-
-            game.switchPlayer();
-            game.updateScores();
-            updateGameDisplay();
-
-            // Si pas de coups possibles pour le joueur suivant
-            if (game.getValidMoves().isEmpty()) {
+            // Utilisation de Platform.runLater pour laisser l'UI se mettre à jour
+            Platform.runLater(() -> {
                 if (game.isGameOver()) {
                     handleGameOver();
-                } else {
-                    game.switchPlayer();
-                    updateGameDisplay();
+                    return;
                 }
-            }
 
-            // Gestion de l'IA après toutes les vérifications
-            if (aiEnabled && game.getCurrentPlayer() == game.getPlayer2()) {
-                makeAIMove();
-            }
+                game.switchPlayer();
+                game.updateScores();
+                updateGameDisplay();
+
+                if (game.getValidMoves().isEmpty()) {
+                    if (game.isGameOver()) {
+                        handleGameOver();
+                    } else {
+                        game.switchPlayer();
+                        updateGameDisplay();
+                    }
+                }
+
+                if (aiEnabled && game.getCurrentPlayer() == game.getPlayer2()) {
+                    makeAIMove();
+                }
+            });
         } else {
             othelloView.showInvalidMoveMessage();
         }
@@ -90,15 +93,15 @@ public class OthelloController implements BoardGameController {
     private void makeAIMove() {
         isAITurn = true;
         new Thread(() -> {
-            try {
-                Thread.sleep(500);
-                BoardPosition aiMove = ai.findBestMove(game, game.getCurrentPlayer().getColor());
+            BoardPosition aiMove = ai.findBestMove(game, game.getCurrentPlayer().getColor());
 
-                javafx.application.Platform.runLater(() -> {
-                    if (aiMove != null) {
-                        game.executeMove(aiMove);
-                        othelloView.markLastPlayedPosition(aiMove);
+            Platform.runLater(() -> {
+                if (aiMove != null) {
+                    game.executeMove(aiMove);
+                    othelloView.markLastPlayedPosition(aiMove);
+                    updateGameDisplay();
 
+                    Platform.runLater(() -> {
                         if (game.isGameOver()) {
                             handleGameOver();
                             return;
@@ -107,7 +110,6 @@ public class OthelloController implements BoardGameController {
                         game.switchPlayer();
                         updateGameDisplay();
 
-                        // Vérification supplémentaire pour le joueur suivant
                         if (game.getValidMoves().isEmpty()) {
                             if (game.isGameOver()) {
                                 handleGameOver();
@@ -116,14 +118,10 @@ public class OthelloController implements BoardGameController {
                                 updateGameDisplay();
                             }
                         }
-                    }
-                    isAITurn = false;
-                });
-
-            } catch (InterruptedException e) {
-                System.err.println("Error during AI move: " + e.getMessage());
-                isAITurn = false;
-            }
+                        isAITurn = false;
+                    });
+                }
+            });
         }).start();
     }
 
@@ -150,8 +148,12 @@ public class OthelloController implements BoardGameController {
                     if (aiEnabled) {
                         game.undo();
                         game.undo();
+                        BoardPosition lastPos = game.getLastPlayedPosition();
+                        othelloView.markLastPlayedPosition(lastPos);
                     } else {
                         game.undo();
+                        BoardPosition lastPos = game.getLastPlayedPosition();
+                        othelloView.markLastPlayedPosition(lastPos);
                     }
                     game.updateScores();
                     updateGameDisplay();
@@ -162,8 +164,12 @@ public class OthelloController implements BoardGameController {
                     if (aiEnabled) {
                         game.redo();
                         game.redo();
+                        BoardPosition lastPos = game.getLastPlayedPosition();
+                        othelloView.markLastPlayedPosition(lastPos);
                     } else {
                         game.redo();
+                        BoardPosition lastPos = game.getLastPlayedPosition();
+                        othelloView.markLastPlayedPosition(lastPos);
                     }
                     game.updateScores();
                     updateGameDisplay();
