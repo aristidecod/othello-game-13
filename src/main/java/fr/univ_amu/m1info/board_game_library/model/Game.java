@@ -152,4 +152,15 @@ public class Game implements Cloneable {
         List<BoardPosition> validMovesPlayer2 = getGrid().findValidMoves(getPlayer2().getColor());
         return validMovesPlayer1.isEmpty() && validMovesPlayer2.isEmpty();
     }
+
+    public void clearHistory() {
+        // Garder seulement la commande initiale dans l'historique
+        Command initialCommand = undoHistory.getLast(); // Récupère la commande initiale
+        undoHistory.clear();
+        undoHistory.push(initialCommand);
+
+        // Effacer l'historique de redo
+        redoHistory.clear();
+    }
+
 }

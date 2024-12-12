@@ -142,8 +142,25 @@ public class OthelloController implements BoardGameController {
                 }
                 break;
             case "AIToggle":
-                setAiEnabled(!aiEnabled);
+                // Réinitialiser le jeu
+                game.resetGame();
+
+                // Inverser l'état de l'IA
+                aiEnabled = !aiEnabled;
+
+                // Effacer l'historique (ajoutez cette méthode dans la classe Game)
+                game.clearHistory();
+
+                // Mettre à jour l'affichage
+                updateGameDisplay();
+
+                // Afficher le statut de l'IA
                 othelloView.showAIStatusMessage(aiEnabled);
+
+                // Si l'IA est activée et que c'est le tour du joueur 2, faire jouer l'IA
+                if (aiEnabled && game.getCurrentPlayer() == game.getPlayer2()) {
+                    makeAIMove();
+                }
                 break;
         }
     }
