@@ -164,18 +164,16 @@ public class OthelloController implements BoardGameController {
                     if (aiEnabled) {
                         game.redo();
                         game.redo();
-                        BoardPosition lastPos = game.getLastPlayedPosition();
-                        othelloView.markLastPlayedPosition(lastPos);
                     } else {
                         game.redo();
-                        BoardPosition lastPos = game.getLastPlayedPosition();
-                        othelloView.markLastPlayedPosition(lastPos);
                     }
                     game.updateScores();
                     updateGameDisplay();
                 }
                 break;
             case "AIToggle":
+
+
                 game.resetGame();
                 setAiEnabled(!aiEnabled);
                 othelloView.showAIStatusMessage(aiEnabled);
