@@ -13,7 +13,7 @@ public class MinimaxOthelloAI implements OthelloAI {
     // Augmenté à 5 pour une meilleure analyse
     final int MAX_DEPTH = 5;
     private static final int BOARD_SIZE = 8;
-    private static final int TIMEOUT_MS = 2000;
+    private static final int TIMEOUT_MS = 10000;
     private long startTime;
     int bestScore;
 
@@ -34,6 +34,11 @@ public class MinimaxOthelloAI implements OthelloAI {
 
         // Parcours tous les coups valides possibles
         for (BoardPosition move : game.getValidMoves()) {
+
+            if (isTimeOut()) {
+                break;
+            }
+
             Game gameCopy = game.clone();
             gameCopy.makeMove(move);
             int score = minimax(gameCopy, MAX_DEPTH, alpha, beta, false, aiColor);
@@ -43,23 +48,19 @@ public class MinimaxOthelloAI implements OthelloAI {
                 bestMove = move;
             }
             alpha = bestScore;
-
-            if (isTimeOut()) {
-                break;
-            }
         }
 
         return bestMove;
     }
 
-    private boolean isTimeOut() {
+    public boolean isTimeOut() {
         return System.currentTimeMillis() - startTime > TIMEOUT_MS;
     }
 
     /**
      * Implémentation de l'algorithme Minimax avec élagage alpha-beta
      */
-    private int minimax(Game game, int depth, int alpha, int beta, boolean isMaximizing, PlayerColor aiColor) {
+    public int minimax(Game game, int depth, int alpha, int beta, boolean isMaximizing, PlayerColor aiColor) {
         if (depth == 0 || game.isOver() || isTimeOut()) {
             return evaluate(game, aiColor);
         }
@@ -97,7 +98,7 @@ public class MinimaxOthelloAI implements OthelloAI {
     /**
      * Fonction d'évaluation améliorée de l'état du jeu
      */
-    private int evaluate(Game game, PlayerColor aiColor) {
+    public int evaluate(Game game, PlayerColor aiColor) {
         int score = 0;
         GridIterator iterator = new GridIterator(BOARD_SIZE);
 
