@@ -7,21 +7,17 @@ import fr.univ_amu.m1info.board_game_library.graphics.Color;
 import fr.univ_amu.m1info.board_game_library.graphics.Shape;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.layout.HBox;
-import javafx.geometry.Pos;
 
 
 public class JavaFXBoardGameView extends VBox implements BoardGameControllableView {
     private final Stage stage;
     private BoardGridView boardGridView;
-    private Bar bar;
     private BoardGameController controller;
-    private Bar topBar;    // Barre du haut pour les informations
-    private Bar bottomBar; // Nouvelle barre du bas pour les boutons
+    private Bar topBar;
+    private Bar bottomBar;
 
     public void setController(BoardGameController controller) {
         this.controller = controller;
@@ -38,8 +34,8 @@ public class JavaFXBoardGameView extends VBox implements BoardGameControllableVi
         BorderPane mainLayout = new BorderPane();
 
         // Création des barres
-        topBar = new Bar();    // Pour les informations
-        bottomBar = new Bar(); // Pour les boutons
+        topBar = new Bar();
+        bottomBar = new Bar();
         boardGridView = new BoardGridView();
 
         // Placement des éléments dans le BorderPane
