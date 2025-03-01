@@ -4,6 +4,7 @@ import fr.univ_amu.m1info.board_game_library.model.BoardPosition;
 import fr.univ_amu.m1info.board_game_library.model.Game;
 import fr.univ_amu.m1info.board_game_library.model.PlayerColor;
 import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
+import java.util.Iterator;
 
 /**
  * Implémentation de l'intelligence artificielle pour le jeu Othello
@@ -100,7 +101,7 @@ public class MinimaxOthelloAI implements OthelloAI {
      */
     public int evaluate(Game game, PlayerColor aiColor) {
         int score = 0;
-        GridIterator iterator = new GridIterator(BOARD_SIZE);
+        Iterator<BoardPosition> iterator = new GridIterator(BOARD_SIZE);
 
         // Matrice de poids pour l'évaluation des positions
         int[][] weights = {

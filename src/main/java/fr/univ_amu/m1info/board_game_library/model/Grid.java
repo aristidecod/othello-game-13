@@ -1,9 +1,8 @@
 package fr.univ_amu.m1info.board_game_library.model;
 
 import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
-import fr.univ_amu.m1info.board_game_library.iterator.BoardIterator;
-
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Grid implements Cloneable {
@@ -114,7 +113,7 @@ public class Grid implements Cloneable {
      */
     public List<BoardPosition> findValidMoves(PlayerColor playerColor) {
         List<BoardPosition> validMoves = new ArrayList<>();
-        BoardIterator iterator = new GridIterator(8);
+        Iterator<BoardPosition> iterator = new GridIterator(8);
         while (iterator.hasNext()) {
             BoardPosition position = iterator.next();
             if (isValidMove(position, playerColor)) {

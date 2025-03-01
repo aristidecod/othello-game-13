@@ -1,7 +1,7 @@
 package fr.univ_amu.m1info.board_game_library.model;
 
 import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
-import fr.univ_amu.m1info.board_game_library.iterator.BoardIterator;
+import java.util.Iterator;
 
 public class Player {
     private final String name;
@@ -41,7 +41,7 @@ public class Player {
      */
     public void calculateScore(Grid grid) {
         int newScore = 0;
-        BoardIterator iterator = new GridIterator(8);
+        Iterator<BoardPosition> iterator = new GridIterator(8);
         while (iterator.hasNext()) {
             BoardPosition position = iterator.next();
             Pawn pawn = grid.getPawn(position);

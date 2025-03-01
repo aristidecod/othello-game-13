@@ -5,8 +5,8 @@ import fr.univ_amu.m1info.board_game_library.iterator.GridIterator;
 import fr.univ_amu.m1info.board_game_library.graphics.BoardGameView;
 import fr.univ_amu.m1info.board_game_library.graphics.Color;
 import fr.univ_amu.m1info.board_game_library.graphics.Shape;
-import fr.univ_amu.m1info.board_game_library.iterator.BoardIterator;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javafx.application.Platform;
 import javafx.scene.control.*;
@@ -26,7 +26,7 @@ public class OthelloView {
     }
 
     public void initializeBoard() {
-        BoardIterator iterator = new GridIterator(BOARD_SIZE);
+        Iterator<BoardPosition> iterator = new GridIterator(BOARD_SIZE);
         while (iterator.hasNext()) {
             BoardPosition pos = iterator.next();
             setCheckerboardPattern(pos.row(), pos.col());
@@ -43,7 +43,7 @@ public class OthelloView {
 
     public void displayPawns(Grid grid) {
         clearBoard();
-        BoardIterator iterator = new GridIterator(BOARD_SIZE);
+        Iterator<BoardPosition> iterator = new GridIterator(BOARD_SIZE);
         while (iterator.hasNext()) {
             BoardPosition position = iterator.next();
             Pawn pawn = grid.getPawn(position);
@@ -128,7 +128,7 @@ public class OthelloView {
     }
 
     private void clearBoard() {
-        BoardIterator iterator = new GridIterator(BOARD_SIZE);
+        Iterator<BoardPosition> iterator = new GridIterator(BOARD_SIZE);
         while (iterator.hasNext()) {
             BoardPosition pos = iterator.next();
             view.removeShapesAtCell(pos.row(), pos.col());
